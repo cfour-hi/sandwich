@@ -22,3 +22,7 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## 规范
+
+### [commitlint](https://github.com/conventional-changelog/commitlint)
