@@ -3,8 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "yarn serve:editor & yarn serve:site",
+    "serve:editor": "node scripts/serve.js editor",
+    "serve:site": "node scripts/serve.js site",
+    "build:dev": "yarn build:editor:dev & yarn build:site:dev",
+    "build:editor:dev": "node scripts/build.js editor dev",
+    "build:site:dev": "node scripts/build.js site dev",
+    "build": "yarn build:editor & yarn build:site",
+    "build:editor": "node scripts/build.js editor",
+    "build:site": "node scripts/build.js site",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -21,6 +28,7 @@
     "@vue/cli-service": "^4.1.0",
     "@vue/eslint-config-prettier": "^5.0.0",
     "babel-eslint": "^10.0.3",
+    "cross-env": "^6.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",
@@ -28,6 +36,9 @@
     "less-loader": "^5.0.0",
     "lint-staged": "^9.4.3",
     "prettier": "^1.19.1",
+    "svg-sprite-loader": "^4.1.6",
+    "svg-transform-loader": "^2.0.8",
+    "svgo-loader": "^2.2.1",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
