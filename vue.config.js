@@ -1,17 +1,15 @@
 const path = require('path');
 
-module.exports = {
-  devServer: {
-    port: '9201',
-  },
+process.env.VUE_APP_VERSION = require('./package.json').version;
 
+module.exports = {
   chainWebpack: config => {
     // https://github.com/JetBrains/svg-sprite-loader
     config.module
       .rule('svg')
       .uses.delete('file-loader')
       .end()
-      .include.add(path.resolve(__dirname, 'src/assets/svg-icon'))
+      .include.add(path.resolve(__dirname, 'src/editor/assets/svg-icon'))
       .end()
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')

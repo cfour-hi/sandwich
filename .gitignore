@@ -13,7 +13,7 @@ yarn-error.log*
 
 # Editor directories and files
 .idea
-.vscode
+# .vscode
 *.suo
 *.ntvs*
 *.njsproj
@@ -22,3 +22,5 @@ yarn-error.log*
 
 # Project
 dist
+.vscode/**
+!.vscode/settings.json

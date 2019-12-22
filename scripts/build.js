@@ -1,8 +1,7 @@
 const { spawn } = require('child_process');
-const { vueCliContext, entry, version, rawArgv } = require('./compile');
+const { entry, rawArgv } = require('./compile');
 
-const env = rawArgv[1];
-const cmd = `cross-env VUE_CLI_CONTEXT=${vueCliContext} VUE_APP_ENV=${env} VUE_APP_VERSION=${version} vue-cli-service build ${entry}`;
+const cmd = `vue-cli-service build ${entry} ${rawArgv.join(' ')}`;
 
 spawn(cmd, {
   cwd: process.cwd(),
