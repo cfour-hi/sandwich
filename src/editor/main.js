@@ -2,6 +2,7 @@ import 'normalize.css';
 import './styles/app.less';
 import './element-ui';
 import Vue from 'vue';
+import store from './store/index';
 import App from './App.vue';
 import SvgIcon from './components/SvgIcon.vue';
 
@@ -14,5 +15,6 @@ Vue.component(SvgIcon.name, SvgIcon);
 );
 
 new Vue({
+  store,
   render: h => h(App),
 }).$mount('#app');

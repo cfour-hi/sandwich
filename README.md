@@ -46,3 +46,11 @@ VUE_APP_VERSION 指定当前版本号
 
 [可编辑的 SVG 图标系统](https://cn.vuejs.org/v2/cookbook/editable-svg-icons.html)
 [svg-sprite-loader](https://github.com/JetBrains/svg-sprite-loader)
+
+### vscode jsconfig.json 和 工作区设置（gitignore !）
+
+### eslint no-console no-debugger
+
+### number-precision 解决数值计算精度问题
+
+### 生成随机码
