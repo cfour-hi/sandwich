@@ -4,13 +4,29 @@ import { ADD_COMPONENT, SET_ACTIVE_COMPONENT_ID } from './mutation-types';
 
 export default {
   state: {
-    comps: [],
+    components: [],
     activeComponentId: '',
+  },
+
+  getters: {
+    activeComponentIndex({ components, activeComponentId }) {
+      if (activeComponentId) {
+        return components.findIndex(c => c.id === activeComponentId);
+      }
+      return -1;
+    },
+
+    activeComponent({ components }, { activeComponentIndex }) {
+      if (activeComponentIndex < 0) {
+        return null;
+      }
+      return components[activeComponentIndex];
+    },
   },
 
   mutations: {
     [ADD_COMPONENT](state, comp) {
-      state.comps.push(comp);
+      state.components.push(comp);
     },
 
     [SET_ACTIVE_COMPONENT_ID](state, id) {
@@ -20,7 +36,7 @@ export default {
 
   actions: {
     addComponent({ state, commit }, { type, attrs = {} }) {
-      const y = state.comps
+      const y = state.components
         .map(c => c.height)
         .reduce((p, c) => NP.plus(p, c), 0);
       const comp = createComponent(type, {

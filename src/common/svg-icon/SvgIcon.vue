@@ -9,7 +9,7 @@ export default {
   name: 'SvgIcon',
 
   props: {
-    fileName: {
+    filename: {
       type: String,
       required: true,
     },
@@ -17,7 +17,7 @@ export default {
 
   computed: {
     iconName() {
-      return `#icon-${this.fileName}`;
+      return `#icon-${this.filename}`;
     },
   },
 };

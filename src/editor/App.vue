@@ -3,25 +3,30 @@
     <AppHeader />
 
     <el-container>
-      <AppComponentBar />
-
+      <!-- 组件选择面板 -->
+      <AppComponentPanel />
+      <!-- 主体区域 -->
       <AppMain />
+      <!-- 组件控制面板 -->
+      <AppControlPanel />
     </el-container>
   </el-container>
 </template>
 
 <script>
 import AppHeader from './components/AppHeader.vue';
-import AppComponentBar from './components/AppComponentBar.vue';
+import AppComponentPanel from './components/AppComponentPanel.vue';
 import AppMain from './components/AppMain.vue';
+import AppControlPanel from './components/control-panel/index.vue';
 
 export default {
   name: 'App',
 
   components: {
     AppHeader,
-    AppComponentBar,
+    AppComponentPanel,
     AppMain,
+    AppControlPanel,
   },
 };
 </script>

@@ -9,7 +9,7 @@ module.exports = {
       .rule('svg')
       .uses.delete('file-loader')
       .end()
-      .include.add(path.resolve(__dirname, 'src/editor/assets/svg-icon'))
+      .include.add(path.resolve(__dirname, 'src/common/svg-icon/icons'))
       .end()
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')
@@ -21,5 +21,12 @@ module.exports = {
       .use('svgo-loader')
       .loader('svgo-loader')
       .end();
+  },
+
+  pluginOptions: {
+    'style-resources-loader': {
+      preProcessor: 'less',
+      patterns: [path.resolve(__dirname, './src/common/styles/main.less')],
+    },
   },
 };

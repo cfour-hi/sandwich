@@ -1,12 +1,25 @@
 <template>
   <div class="edit-area">
+    <Renderer
+      :components="$store.state.page.components"
+      :active-component-id="$store.state.page.activeComponentId"
+      @changeActiveComponent="handleChangeActiveComponent"
+    />
     <div class="first-screen-line">首屏位置</div>
   </div>
 </template>
 
 <script>
+import { SET_ACTIVE_COMPONENT_ID } from '../store/mutation-types';
+
 export default {
   name: 'EditArea',
+
+  methods: {
+    handleChangeActiveComponent(component) {
+      this.$store.commit(SET_ACTIVE_COMPONENT_ID, component.id);
+    },
+  },
 };
 </script>
 

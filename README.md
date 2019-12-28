@@ -54,3 +54,5 @@ VUE_APP_VERSION 指定当前版本号
 ### number-precision 解决数值计算精度问题
 
 ### 生成随机码
+
+### [vue css 预处理器自动化导入](https://cli.vuejs.org/zh/guide/css.html#%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AF%BC%E5%85%A5)

@@ -1,5 +1,5 @@
 <template>
-  <el-aside>
+  <el-aside width="272px">
     <ul class="comp-list">
       <li
         v-for="(comp, type) in componentSetting"
@@ -7,8 +7,8 @@
         class="comp-item"
         @click="handleClickComp(type)"
       >
-        <svg-icon file-name="image"></svg-icon>
-        {{ comp.label }}
+        <svg-icon filename="image"></svg-icon>
+        <span>{{ comp.label }}</span>
       </li>
     </ul>
   </el-aside>
@@ -18,7 +18,7 @@
 import componentSetting from '../component-setting';
 
 export default {
-  name: 'AppComponentBar',
+  name: 'AppComponentPanel',
 
   data() {
     this.componentSetting = componentSetting;
@@ -42,23 +42,33 @@ export default {
 
   .comp-list {
     display: flex;
+    width: 240px;
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
 
     .comp-item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      .flex-center();
+      flex-direction: column;
       box-sizing: border-box;
       width: 80px;
       height: 80px;
-      border: 1px dashed #e4e7ed;
+      border-right: 1px solid #eee;
+      border-bottom: 1px solid #eee;
       font-size: 14px;
       color: #5d6482;
       background-color: #fff;
       cursor: pointer;
 
+      .svg-icon {
+        font-size: 24px;
+        margin-bottom: 4px;
+      }
+
       &:hover {
-        color: #409eff;
-        border-color: #409eff;
+        .svg-icon {
+          transform: translateY(-2px);
+          transition: transform ease-in-out 0.1s;
+        }
       }
     }
   }
