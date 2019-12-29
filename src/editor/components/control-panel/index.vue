@@ -1,9 +1,14 @@
 <template>
   <el-aside :style="controlPanelStyle">
+    <!-- 这里必须设置 key -->
+    <!-- 不然相同类型组件之间的切换 -->
+    <!-- 使用的仍是同一个 panel 组件 -->
+    <!-- 会导致组件内容不更新的问题 -->
     <Component
       :is="activeControlPanel"
       v-if="activeControlPanel"
-      :component="$store.getters.activeComponent"
+      :key="activeComponent.id"
+      :component="activeComponent"
       class="control-panel"
     />
   </el-aside>
@@ -20,10 +25,13 @@ export default {
   },
 
   computed: {
+    activeComponent() {
+      return this.$store.getters.activeComponent;
+    },
+
     activeControlPanel() {
-      const { activeComponent } = this.$store.getters;
-      if (activeComponent) {
-        return componentSetting[activeComponent.type].controlPanel;
+      if (this.activeComponent) {
+        return componentSetting[this.activeComponent.type].controlPanel;
       }
       return null;
     },
@@ -45,7 +53,7 @@ export default {
 
 <style lang="less" scoped>
 .el-aside {
-  padding: 0 20px;
+  padding: 0 16px;
   background-color: #f7f9fc;
   box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.1);
 }

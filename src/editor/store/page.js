@@ -1,6 +1,25 @@
 import NP from 'number-precision';
 import createComponent from '@/renderer/component-factory/create-component';
-import { ADD_COMPONENT, SET_ACTIVE_COMPONENT_ID } from './mutation-types';
+import {
+  ADD_COMPONENT,
+  SET_ACTIVE_COMPONENT_ID,
+  UPDATE_ACTIVE_COMPONENT,
+} from './mutation-types';
+
+/**
+ * 调整组件的定位 y 值（与顶部的距离）
+ * @param {Array} comps
+ */
+const processCompsLocation = comps => {
+  comps.forEach((comp, index, self) => {
+    if (index === 0) {
+      comp.y = 0;
+    } else {
+      const prevComp = self[index - 1];
+      comp.y = prevComp.y + prevComp.height;
+    }
+  });
+};
 
 export default {
   state: {
@@ -31,6 +50,14 @@ export default {
 
     [SET_ACTIVE_COMPONENT_ID](state, id) {
       state.activeComponentId = id;
+    },
+
+    [UPDATE_ACTIVE_COMPONENT](state, payload) {
+      const activeComp = state.components.find(
+        c => c.id === state.activeComponentId
+      );
+      Object.assign(activeComp, JSON.parse(JSON.stringify(payload)));
+      processCompsLocation(state.components);
     },
   },
 

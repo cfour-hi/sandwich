@@ -1,8 +1,8 @@
 <template>
   <div class="component-picture">
     <img
-      v-if="component.url"
-      :src="component.url"
+      v-if="component.src.url"
+      :src="component.src.url"
       class="picture"
       @load="handleLoadPicture"
     />
@@ -37,7 +37,7 @@ export default {
   background-color: #f2f6fc;
   .flex-center();
 
-  .pictire {
+  .picture {
     display: block;
     width: 100%;
   }
