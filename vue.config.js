@@ -3,6 +3,8 @@ const path = require('path');
 process.env.VUE_APP_VERSION = require('./package.json').version;
 
 module.exports = {
+  outputDir: path.resolve(__dirname, `dist/${process.env.PROJECT_NAME}`),
+
   chainWebpack: config => {
     // https://github.com/JetBrains/svg-sprite-loader
     config.module
