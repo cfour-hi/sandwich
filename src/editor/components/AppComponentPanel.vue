@@ -27,7 +27,7 @@ export default {
 
   methods: {
     handleClickComp(type) {
-      this.$store.dispatch('addComponent', type);
+      this.$store.dispatch('addComponent', { type });
     },
   },
 };

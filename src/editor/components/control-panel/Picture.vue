@@ -28,7 +28,6 @@ export default {
     async handleChangeFile(e) {
       const img = await getUploadImageWH(e.target.files[0], { width: '375px' });
       this.$store.commit(UPDATE_ACTIVE_COMPONENT, {
-        height: img.height,
         src: {
           url: img.url,
           width: img.naturalWidth,

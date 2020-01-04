@@ -2,6 +2,7 @@
   <div class="renderer">
     <div
       v-for="component in components"
+      :id="component.id"
       :key="component.id"
       :class="{ active: activeComponentId === component.id }"
       class="component-wrap"
@@ -9,7 +10,6 @@
       <component
         :is="componentTypes[component.type]"
         :component="component"
-        :style="{ height: `${component.height}px` }"
         class="component"
       />
       <div
@@ -23,6 +23,7 @@
 <script>
 import { COMPONENT_TYPE } from './constants';
 import Picture from './components/Picture.vue';
+import ChoiceQuestion from './components/ChoiceQuestion.vue';
 
 export default {
   name: 'Renderer',
@@ -42,6 +43,7 @@ export default {
   data() {
     this.componentTypes = {
       [COMPONENT_TYPE.picture]: Picture,
+      [COMPONENT_TYPE.choiseQuestion]: ChoiceQuestion,
     };
     return {};
   },
@@ -49,6 +51,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.renderer {
+  line-height: 1.5;
+}
+
 .component-wrap {
   position: relative;
 
@@ -59,12 +65,32 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
+
+    &:hover::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      bottom: -2px;
+      left: -2px;
+      border: 1px solid #999;
+    }
+
+    &:hover::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      bottom: -2px;
+      left: -2px;
+      border: 1px dashed #fff;
+    }
   }
 
   &.active {
     .mask {
-      border-color: #000;
+      border-color: #409eff;
     }
   }
 }

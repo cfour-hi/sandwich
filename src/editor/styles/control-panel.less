@@ -11,4 +11,22 @@
     background-color: #ccced780;
     box-shadow: 20px 0 0 0 #ccced780, -20px 0 0 0 #ccced780;
   }
+
+  .form-item {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+    &.flex-between {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__input {
+      margin-top: 8px;
+    }
+  }
 }

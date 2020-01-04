@@ -51,7 +51,7 @@ VUE_APP_VERSION 指定当前版本号
 
 ### eslint no-console no-debugger
 
-### number-precision 解决数值计算精度问题
+~~### number-precision 解决数值计算精度问题~~
 
 ### 生成随机码
 
