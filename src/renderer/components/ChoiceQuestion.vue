@@ -1,5 +1,5 @@
 <template>
-  <div class="choice-question">
+  <div class="component__choice-question">
     <div class="title" :class="{ required: component.required }">
       {{ component.title }}
       <div class="desc">{{ component.desc }}</div>
@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'ChoiseQuestion',
+  name: 'ComponentChoiseQuestion',
 
   props: {
     component: {
@@ -37,27 +37,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.choice-question {
-  padding: 16px;
+@import '~@/renderer/styles/form.less';
 
-  .title {
-    margin-bottom: 8px;
-    font-size: 16px;
-    font-weight: 700;
-
-    &.required::before {
-      content: '*';
-      position: absolute;
-      margin-left: -10px;
-      color: #f56c6c;
-    }
-  }
-
-  .desc {
-    font-size: 14px;
-    color: #999;
-    font-weight: 400;
-  }
+.component__choice-question {
+  .form-item();
 
   .option {
     display: flex;

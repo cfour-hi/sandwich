@@ -24,6 +24,7 @@
 import { COMPONENT_TYPE } from './constants';
 import Picture from './components/Picture.vue';
 import ChoiceQuestion from './components/ChoiceQuestion.vue';
+import Textarea from './components/Textarea.vue';
 
 export default {
   name: 'Renderer',
@@ -44,6 +45,7 @@ export default {
     this.componentTypes = {
       [COMPONENT_TYPE.picture]: Picture,
       [COMPONENT_TYPE.choiseQuestion]: ChoiceQuestion,
+      [COMPONENT_TYPE.textarea]: Textarea,
     };
     return {};
   },
@@ -57,6 +59,10 @@ export default {
 
 .component-wrap {
   position: relative;
+
+  .component {
+    font-size: 0; // 避免元素之间的空白会产生不必要的距离
+  }
 
   .mask {
     box-sizing: border-box;

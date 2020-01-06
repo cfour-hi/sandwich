@@ -1,5 +1,5 @@
 <template>
-  <div class="component-picture">
+  <div class="component__picture">
     <img
       v-if="component.src.url"
       :src="component.src.url"
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'Picture',
+  name: 'ComponentPicture',
 
   props: {
     component: {
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.component-picture {
+.component__picture {
   background-color: #f2f6fc;
   .flex-center();
 
