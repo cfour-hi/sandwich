@@ -42,6 +42,7 @@ export default {
 
   .comp-list {
     display: flex;
+    flex-wrap: wrap;
     width: 240px;
     border-top: 1px solid #eee;
     border-left: 1px solid #eee;

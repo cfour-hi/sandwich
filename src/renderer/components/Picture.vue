@@ -1,11 +1,6 @@
 <template>
   <div class="component__picture">
-    <img
-      v-if="component.src.url"
-      :src="component.src.url"
-      class="picture"
-      @load="handleLoadPicture"
-    />
+    <img v-if="component.src.url" :src="component.src.url" class="picture" />
     <svg-icon v-else filename="image" />
   </div>
 </template>
@@ -18,15 +13,6 @@ export default {
     component: {
       type: Object,
       required: true,
-    },
-  },
-
-  methods: {
-    handleLoadPicture() {
-      if (this.$EventBus) {
-        // 图片加载完成需要更新图片组件高度值
-        this.$EventBus.$emit('loadComponentPicture');
-      }
     },
   },
 };

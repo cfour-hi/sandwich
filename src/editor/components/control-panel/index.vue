@@ -42,12 +42,6 @@ export default {
       return style;
     },
   },
-
-  methods: {
-    handleDeleteComp() {
-      this.$store.dispatch('deleteActiveComp');
-    },
-  },
 };
 </script>
 

@@ -25,6 +25,7 @@ import { COMPONENT_TYPE } from './constants';
 import Picture from './components/Picture.vue';
 import ChoiceQuestion from './components/ChoiceQuestion.vue';
 import Textarea from './components/Textarea.vue';
+import Button from './components/Button.vue';
 
 export default {
   name: 'Renderer',
@@ -46,6 +47,7 @@ export default {
       [COMPONENT_TYPE.picture]: Picture,
       [COMPONENT_TYPE.choiseQuestion]: ChoiceQuestion,
       [COMPONENT_TYPE.textarea]: Textarea,
+      [COMPONENT_TYPE.button]: Button,
     };
     return {};
   },

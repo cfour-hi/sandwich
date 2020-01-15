@@ -33,7 +33,12 @@ export default {
       const activeComp = state.components.find(
         c => c.id === state.activeComponentId
       );
-      Object.assign(activeComp, JSON.parse(JSON.stringify(payload)));
+      const copyPayload = JSON.parse(JSON.stringify(payload));
+      /**
+       * 如果 payload 某个属性为引用类型数据
+       * 需要将这个引用类型的全量数据都传递过来
+       */
+      Object.assign(activeComp, copyPayload);
     },
   },
 

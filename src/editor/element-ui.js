@@ -9,6 +9,8 @@ import {
   RadioGroup,
   RadioButton,
   Switch,
+  ColorPicker,
+  InputNumber,
 } from 'element-ui';
 
 Vue.prototype.$ELEMENT = { size: 'small' };
@@ -22,3 +24,5 @@ Vue.use(Input);
 Vue.use(RadioGroup);
 Vue.use(RadioButton);
 Vue.use(Switch);
+Vue.use(ColorPicker);
+Vue.use(InputNumber);
