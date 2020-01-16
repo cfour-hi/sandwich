@@ -3,6 +3,7 @@ import controlPanelPicture from './components/control-panel/Picture.vue';
 import controlPanelChoiseQuestion from './components/control-panel/ChoiseQuestion.vue';
 import controlPanelTextarea from './components/control-panel/Textarea.vue';
 import controlPanelButton from './components/control-panel/Button.vue';
+import controlPanelText from './components/control-panel/Text.vue';
 
 export default {
   [COMPONENT_TYPE.picture]: {
@@ -20,5 +21,9 @@ export default {
   [COMPONENT_TYPE.button]: {
     label: '按钮',
     controlPanel: controlPanelButton,
+  },
+  [COMPONENT_TYPE.text]: {
+    label: '文字',
+    controlPanel: controlPanelText,
   },
 };

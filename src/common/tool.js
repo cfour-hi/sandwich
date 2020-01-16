@@ -71,3 +71,13 @@ export const getUploadImageWH = async (file, { width } = {}) => {
     naturalHeight: img.naturalHeight,
   };
 };
+
+/**
+ * 解析单位值中的数值
+ * @param {String} unit
+ */
+export const parseUnitNumber = unit => {
+  if (toRawType(unit) !== 'String') return 0;
+  const n = Number(unit.replace(/px/, ''));
+  return isNaN(n) ? 0 : n;
+};

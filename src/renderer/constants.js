@@ -3,6 +3,7 @@ export const COMPONENT_TYPE = {
   choiseQuestion: 'choiseQuesion',
   textarea: 'textarea',
   button: 'button',
+  text: 'text',
 };
 
 export const QUESTION_TYPE = {

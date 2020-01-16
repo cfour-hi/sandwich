@@ -25,7 +25,7 @@ import FormItemInput from './form-item/Input.vue';
 import FormItemRequired from './form-item/Required.vue';
 
 export default {
-  name: 'ControlPanelInput',
+  name: 'ControlPanelTextarea',
 
   components: {
     FormItemInput,

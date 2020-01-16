@@ -20,7 +20,7 @@
     <div class="form-item flex-between">
       <div class="form-item__label">文字尺寸</div>
       <el-input-number
-        v-model="textFontSize"
+        v-model="fontSize"
         controls-position="right"
         :min="12"
       ></el-input-number>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { assign } from '@/common/tool';
+import { parseUnitNumber } from '@/common/tool';
 import { UPDATE_ACTIVE_COMPONENT } from '@/editor/store/mutation-types';
 import FormItemInput from './form-item/Input.vue';
 
@@ -48,28 +48,23 @@ export default {
   },
 
   data() {
+    const form = JSON.parse(JSON.stringify(this.component));
+    const fontSize = parseUnitNumber(form.style.fontSize);
     return {
-      form: assign(
-        {
-          text: '',
-          style: {
-            fontSize: '14px',
-            color: '#fff',
-            backgroundColor: '#409eff',
-          },
-        },
-        this.component
-      ),
-      textFontSize: 14,
+      form,
+      fontSize,
     };
   },
 
   watch: {
-    'form.style': function(v) {
-      this.$store.commit(UPDATE_ACTIVE_COMPONENT, { style: v });
+    'form.style': {
+      deep: true,
+      handler: function(v) {
+        this.$store.commit(UPDATE_ACTIVE_COMPONENT, { style: v });
+      },
     },
 
-    textFontSize(v) {
+    fontSize(v) {
       this.form.style.fontSize = `${v}px`;
     },
   },
