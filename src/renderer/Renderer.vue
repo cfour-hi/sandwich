@@ -1,21 +1,18 @@
 <template>
   <div class="renderer">
     <div
-      v-for="component in components"
+      v-for="(component, index) in components"
       :id="component.id"
       :key="component.id"
-      :class="{ active: activeComponentId === component.id }"
       class="component-wrap"
     >
+      <slot name="before-component" :component="component" :index="index" />
+
       <component
         :is="componentTypes[component.type]"
         :component="component"
         class="component"
       />
-      <div
-        class="mask"
-        @click="$emit('changeActiveComponent', component)"
-      ></div>
     </div>
   </div>
 </template>
@@ -35,11 +32,6 @@ export default {
     components: {
       type: Array,
       required: true,
-    },
-
-    activeComponentId: {
-      type: String,
-      default: '',
     },
   },
 
@@ -66,42 +58,6 @@ export default {
 
   .component {
     font-size: 0; // 避免元素之间的空白会产生不必要的距离
-  }
-
-  .mask {
-    box-sizing: border-box;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px solid transparent;
-
-    &:hover::before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      right: -2px;
-      bottom: -2px;
-      left: -2px;
-      border: 1px solid #999;
-    }
-
-    &:hover::after {
-      content: '';
-      position: absolute;
-      top: -2px;
-      right: -2px;
-      bottom: -2px;
-      left: -2px;
-      border: 1px dashed #fff;
-    }
-  }
-
-  &.active {
-    .mask {
-      border-color: #409eff;
-    }
   }
 }
 </style>

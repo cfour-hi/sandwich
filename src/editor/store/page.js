@@ -3,6 +3,8 @@ import {
   ADD_COMPONENT,
   SET_ACTIVE_COMPONENT_ID,
   UPDATE_ACTIVE_COMPONENT,
+  MOVE_COMPONENT,
+  DELETE_ACTIVE_COMPONENT,
 } from './mutation-types';
 
 export default {
@@ -39,6 +41,22 @@ export default {
        * 需要将这个引用类型的全量数据都传递过来
        */
       Object.assign(activeComp, copyPayload);
+    },
+
+    [MOVE_COMPONENT](state, direction) {
+      const index = state.components.findIndex(
+        c => c.id === state.activeComponentId
+      );
+      const targetIndex = index + direction;
+      const [targetComp] = state.components.splice(index, 1);
+      state.components.splice(targetIndex, 0, targetComp);
+    },
+
+    [DELETE_ACTIVE_COMPONENT](state) {
+      const index = state.components.findIndex(
+        c => c.id === state.activeComponentId
+      );
+      state.components.splice(index, 1);
     },
   },
 

@@ -191,7 +191,7 @@ export default {
     cursor: pointer;
 
     &.active {
-      color: #409eff;
+      color: @color-brand;
     }
   }
 }
