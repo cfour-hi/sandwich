@@ -1,6 +1,6 @@
 <template>
   <el-container id="app" direction="vertical">
-    <AppHeader />
+    <AppHeader @preview="handlePreview" />
 
     <el-container>
       <!-- 组件选择面板 -->
@@ -10,6 +10,8 @@
       <!-- 组件控制面板 -->
       <AppControlPanel />
     </el-container>
+
+    <Preview v-if="showPreview" />
   </el-container>
 </template>
 
@@ -18,6 +20,7 @@ import AppHeader from './components/AppHeader.vue';
 import AppComponentPanel from './components/AppComponentPanel.vue';
 import AppMain from './components/AppMain.vue';
 import AppControlPanel from './components/control-panel/index.vue';
+import Preview from './components/Preview.vue';
 
 export default {
   name: 'App',
@@ -27,9 +30,25 @@ export default {
     AppComponentPanel,
     AppMain,
     AppControlPanel,
+    Preview,
+  },
+
+  data() {
+    return {
+      showPreview: false,
+    };
+  },
+
+  methods: {
+    handlePreview() {
+      this.showPreview = true;
+    },
   },
 };
 </script>
+
+<style src="normalize.css"></style>
+<style lang="less" src="./styles/app.less"></style>
 
 <style lang="less" scoped>
 #app {

@@ -6322,11 +6322,6 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-number-precision@^1.3.2:
-  version "1.3.2"
-  resolved "https://registry.npm.taobao.org/number-precision/download/number-precision-1.3.2.tgz#634d3a168f0ec459bb5e30063e7f9de0d83b7fb7"
-  integrity sha1-Y006Fo8OxFm7XjAGPn+d4Ng7f7c=
-
 oauth-sign@~0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"

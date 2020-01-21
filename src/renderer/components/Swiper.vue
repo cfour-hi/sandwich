@@ -7,15 +7,19 @@
       @transitionend="handleTransitionend"
     >
       <li v-if="seamlessPictures.length" class="picture-item">
-        <img :src="seamlessPictures[1].url" alt="" class="picture" />
+        <img :src="seamlessPictures[1].url" alt class="picture" />
       </li>
 
-      <li v-for="(picture, index) in component.pictures" :key="index" class="picture-item">
-        <img :src="picture.url" alt="" class="picture" />
+      <li
+        v-for="(picture, index) in component.pictures"
+        :key="index"
+        class="picture-item"
+      >
+        <img :src="picture.url" alt class="picture" />
       </li>
 
       <li v-if="seamlessPictures.length" class="picture-item">
-        <img :src="seamlessPictures[0].url" alt="" class="picture" />
+        <img :src="seamlessPictures[0].url" alt class="picture" />
       </li>
     </ul>
 

@@ -5,7 +5,12 @@
       <div class="desc">{{ component.desc }}</div>
     </div>
 
-    <textarea :value="value" :rows="component.rows" class="textarea" placeholder="请输入" />
+    <textarea
+      :value="value"
+      :rows="component.rows"
+      class="textarea"
+      placeholder="请输入"
+    />
   </div>
 </template>
 

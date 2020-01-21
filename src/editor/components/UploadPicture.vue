@@ -3,7 +3,12 @@
     <img v-if="value" :src="value" alt="" class="picture" />
     <svg-icon v-else filename="plus-circle" />
 
-    <input ref="inputFile" type="file" style="display: none;" @change="$emit('change', $event)" />
+    <input
+      ref="inputFile"
+      type="file"
+      style="display: none;"
+      @change="$emit('change', $event)"
+    />
 
     <!-- stop 修饰符防止删除时触发上传（打开系统文件选择窗口） -->
     <div v-if="value" class="delete-btn-wrap" @click.stop="$emit('delete')">

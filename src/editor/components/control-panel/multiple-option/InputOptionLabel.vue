@@ -1,5 +1,9 @@
 <template>
-  <el-input v-model="proxyValue" class="input__option-label" v-on="$listeners" />
+  <el-input
+    v-model="proxyValue"
+    class="input__option-label"
+    v-on="$listeners"
+  />
 </template>
 
 <script>

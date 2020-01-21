@@ -37,7 +37,9 @@ export default {
     },
 
     [UPDATE_ACTIVE_COMPONENT](state, payload) {
-      const activeComp = state.components.find(c => c.id === state.activeComponentId);
+      const activeComp = state.components.find(
+        c => c.id === state.activeComponentId
+      );
       const copyPayload = JSON.parse(JSON.stringify(payload));
       /**
        * 如果 payload 某个属性为引用类型数据
@@ -47,14 +49,18 @@ export default {
     },
 
     [MOVE_COMPONENT](state, direction) {
-      const index = state.components.findIndex(c => c.id === state.activeComponentId);
+      const index = state.components.findIndex(
+        c => c.id === state.activeComponentId
+      );
       const targetIndex = index + direction;
       const [targetComp] = state.components.splice(index, 1);
       state.components.splice(targetIndex, 0, targetComp);
     },
 
     [DELETE_ACTIVE_COMPONENT](state) {
-      const index = state.components.findIndex(c => c.id === state.activeComponentId);
+      const index = state.components.findIndex(
+        c => c.id === state.activeComponentId
+      );
       state.components.splice(index, 1);
     },
   },

@@ -1,8 +1,16 @@
 <template>
   <div class="operate-bar">
     <div class="move-bar">
-      <svg-icon filename="arrowup" :disabled="disabledUp" @click.native="handleClickMoveUp" />
-      <svg-icon filename="arrowdown" :disabled="disabledDown" @click.native="handleClickMoveDown" />
+      <svg-icon
+        filename="arrowup"
+        :disabled="disabledUp"
+        @click.native="handleClickMoveUp"
+      />
+      <svg-icon
+        filename="arrowdown"
+        :disabled="disabledDown"
+        @click.native="handleClickMoveDown"
+      />
     </div>
     <div class="delete-bar">
       <svg-icon filename="delete" @click.native="$emit('delete')"></svg-icon>

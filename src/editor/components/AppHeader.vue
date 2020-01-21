@@ -1,9 +1,9 @@
 <template>
   <el-header class="app-header" height="64px">
-    <svg-icon filename="sandwich"></svg-icon>
+    <svg-icon filename="sandwich" />
     <div class="right">
-      <svg-icon filename="save" @click.native="handleClickSave"></svg-icon>
-      <svg-icon filename="eye"></svg-icon>
+      <svg-icon filename="save" @click.native="handleClickSave" />
+      <svg-icon filename="eye" @click.native="$emit('preview')" />
     </div>
   </el-header>
 </template>

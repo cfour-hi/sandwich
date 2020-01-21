@@ -1,6 +1,10 @@
 <template>
   <ul>
-    <li v-for="(option, index) of options" :key="optionsKey[index]" class="multiple-option__item">
+    <li
+      v-for="(option, index) of options"
+      :key="optionsKey[index]"
+      class="multiple-option__item"
+    >
       <input
         :type="quesType"
         :checked="option.checked"

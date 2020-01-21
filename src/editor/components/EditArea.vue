@@ -1,5 +1,5 @@
 <template>
-  <div class="edit-area">
+  <div class="edit-area" :style="editAreaStyle">
     <Renderer :components="components">
       <template #before-component="{ component, index }">
         <OperateBar
@@ -30,12 +30,22 @@ import {
   DELETE_ACTIVE_COMPONENT,
 } from '@/editor/store/mutation-types';
 import OperateBar from './OperateBar.vue';
+import { MOBILE_PHONE_WIDTH, MOBILE_PHONE_HEIGHT } from '@/editor/constants';
 
 export default {
   name: 'EditArea',
 
   components: {
     OperateBar,
+  },
+
+  data() {
+    return {
+      editAreaStyle: {
+        width: `${MOBILE_PHONE_WIDTH}px`,
+        minHeight: `${MOBILE_PHONE_HEIGHT}px`,
+      },
+    };
   },
 
   computed: mapState({
@@ -70,8 +80,6 @@ export default {
 
 .edit-area {
   position: relative;
-  min-height: 585px;
-  width: 375px;
   margin: 0 auto;
   background: #fff;
   box-shadow: 0px 0px 8px 0px #000a3814;
@@ -80,8 +88,8 @@ export default {
 
 .mask {
   .position-full;
-  box-sizing: border-box;
   z-index: 1;
+  box-sizing: border-box;
   border: 2px solid transparent;
 
   &.active {

@@ -1,5 +1,3 @@
-import 'normalize.css';
-import './styles/app.less';
 import './element-ui';
 import Vue from 'vue';
 import store from './store/index';

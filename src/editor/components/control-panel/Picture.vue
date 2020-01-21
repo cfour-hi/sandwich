@@ -16,7 +16,7 @@ import {
   getImageHeightOfSpecifialWidth,
   convertPicture2Base64,
 } from '@/common/tool';
-import { PHONE_WIDTH } from '@/editor/constants';
+import { MOBILE_PHONE_WIDTH } from '@/editor/constants';
 import UploadPicture from '../UploadPicture.vue';
 
 export default {
@@ -39,9 +39,13 @@ export default {
       const url = window.URL.createObjectURL(file);
       const [{ naturalWidth, naturalHeight }, height] = await Promise.all([
         getImageNaturalWH(url),
-        getImageHeightOfSpecifialWidth(url, PHONE_WIDTH),
+        getImageHeightOfSpecifialWidth(url, MOBILE_PHONE_WIDTH),
       ]);
-      const base64 = await convertPicture2Base64(url, PHONE_WIDTH, height);
+      const base64 = await convertPicture2Base64(
+        url,
+        MOBILE_PHONE_WIDTH,
+        height
+      );
       this.$store.commit(UPDATE_ACTIVE_COMPONENT, {
         src: {
           url: base64,

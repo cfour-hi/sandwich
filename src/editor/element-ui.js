@@ -27,6 +27,5 @@ Vue.use(RadioButton);
 Vue.use(Switch);
 Vue.use(ColorPicker);
 Vue.use(InputNumber);
-Vue.use(Message);
 
 Vue.prototype.$message = Message;

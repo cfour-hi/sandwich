@@ -28,7 +28,11 @@ module.exports = {
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'less',
-      patterns: [path.resolve(__dirname, './src/common/styles/main.less')],
+      patterns: [
+        path.resolve(__dirname, './src/common/styles/normalize.less'),
+        path.resolve(__dirname, './src/common/styles/theme.less'),
+        path.resolve(__dirname, './src/common/styles/tool.less'),
+      ],
     },
   },
 };

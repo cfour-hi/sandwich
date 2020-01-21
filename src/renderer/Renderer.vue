@@ -8,7 +8,11 @@
     >
       <slot name="before-component" :component="component" :index="index" />
 
-      <component :is="componentTypes[component.type]" :component="component" class="component" />
+      <component
+        :is="componentTypes[component.type]"
+        :component="component"
+        class="component"
+      />
     </div>
   </div>
 </template>
