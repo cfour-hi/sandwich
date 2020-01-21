@@ -54,7 +54,8 @@ export default {
   }
 
   .svg-plus-circle {
-    font-size: 24px;
+    width: 32%;
+    height: auto;
     color: #ccc;
   }
 

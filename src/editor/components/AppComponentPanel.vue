@@ -7,7 +7,7 @@
         class="comp-item"
         @click="handleClickComp(type)"
       >
-        <svg-icon filename="image"></svg-icon>
+        <svg-icon :filename="comp.iconname"></svg-icon>
         <span>{{ comp.label }}</span>
       </li>
     </ul>
