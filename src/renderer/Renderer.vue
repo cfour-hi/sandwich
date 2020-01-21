@@ -24,6 +24,7 @@ import ChoiceQuestion from './components/ChoiceQuestion.vue';
 import Textarea from './components/Textarea.vue';
 import Button from './components/Button.vue';
 import Text from './components/Text.vue';
+import Swiper from './components/Swiper.vue';
 
 export default {
   name: 'Renderer',
@@ -42,6 +43,7 @@ export default {
       [COMPONENT_TYPE.textarea]: Textarea,
       [COMPONENT_TYPE.button]: Button,
       [COMPONENT_TYPE.text]: Text,
+      [COMPONENT_TYPE.swiper]: Swiper,
     };
     return {};
   },
@@ -57,6 +59,7 @@ export default {
   position: relative;
 
   .component {
+    overflow: hidden;
     font-size: 0; // 避免元素之间的空白会产生不必要的距离
   }
 }

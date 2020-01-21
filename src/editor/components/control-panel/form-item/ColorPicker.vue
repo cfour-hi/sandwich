@@ -1,23 +1,28 @@
 <template>
   <div class="form-item flex-between">
-    <div class="form-item__label">是否必填</div>
-    <el-switch v-model="$_required_value" v-bind="$attrs" v-on="$listeners" />
+    <div class="form-item__label">{{ label }}</div>
+    <el-color-picker v-model="proxyValue" v-bind="$attrs" v-on="$listeners" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'FormItemRequired',
+  name: 'FormItemColorPicker',
 
   props: {
     value: {
-      type: Boolean,
-      default: false,
+      type: String,
+      default: '',
+    },
+
+    label: {
+      type: String,
+      default: '',
     },
   },
 
   computed: {
-    $_required_value: {
+    proxyValue: {
       get() {
         return this.value;
       },

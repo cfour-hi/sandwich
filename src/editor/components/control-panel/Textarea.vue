@@ -14,7 +14,11 @@
 
     <FormItemInput v-model="form.desc" label="描述" @blur="handleBlurDesc" />
 
-    <FormItemRequired v-model="form.required" @change="handleChangeRequired" />
+    <FormItemSwitch
+      v-model="form.required"
+      label="是否必填"
+      @change="handleChangeRequired"
+    />
   </div>
 </template>
 
@@ -22,14 +26,14 @@
 import { assign } from '@/common/tool';
 import { UPDATE_ACTIVE_COMPONENT } from '@/editor/store/mutation-types';
 import FormItemInput from './form-item/Input.vue';
-import FormItemRequired from './form-item/Required.vue';
+import FormItemSwitch from './form-item/Switch.vue';
 
 export default {
   name: 'ControlPanelTextarea',
 
   components: {
     FormItemInput,
-    FormItemRequired,
+    FormItemSwitch,
   },
 
   props: {

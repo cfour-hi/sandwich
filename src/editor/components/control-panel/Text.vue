@@ -12,19 +12,9 @@
       />
     </div>
 
-    <div class="form-item flex-between">
-      <div class="form-item__label">文字尺寸</div>
-      <el-input-number
-        v-model="fontSize"
-        controls-position="right"
-        :min="12"
-      ></el-input-number>
-    </div>
+    <FormItemInputNumber v-model="fontSize" label="文字尺寸" :min="12" />
 
-    <div class="form-item flex-between">
-      <div class="form-item__label">文字颜色</div>
-      <el-color-picker v-model="form.style.color"></el-color-picker>
-    </div>
+    <FormItemColorPicker v-model="form.style.color" label="文字颜色" />
 
     <div class="form-item">
       <div class="form-item__label">文字样式</div>
@@ -52,32 +42,29 @@
       </div>
     </div>
 
-    <div class="form-item flex-between">
-      <div class="form-item__label">字间距</div>
-      <el-input-number
-        v-model="letterSpacing"
-        controls-position="right"
-        :min="0"
-      ></el-input-number>
-    </div>
+    <FormItemInputNumber v-model="letterSpacing" label="字间距" :min="0" />
 
-    <div class="form-item flex-between">
-      <div class="form-item__label">行间距</div>
-      <el-input-number
-        v-model="form.style.lineHeight"
-        controls-position="right"
-        :min="1"
-      ></el-input-number>
-    </div>
+    <FormItemInputNumber
+      v-model="form.style.lineHeight"
+      label="行间距"
+      :min="1"
+    />
   </div>
 </template>
 
 <script>
 import { parseUnitNumber } from '@/common/tool';
 import { UPDATE_ACTIVE_COMPONENT } from '@/editor/store/mutation-types';
+import FormItemInputNumber from './form-item/InputNumber.vue';
+import FormItemColorPicker from './form-item/ColorPicker.vue';
 
 export default {
   name: 'ControlPanelText',
+
+  components: {
+    FormItemInputNumber,
+    FormItemColorPicker,
+  },
 
   props: {
     component: {

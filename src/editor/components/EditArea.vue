@@ -60,6 +60,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.mask-position {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+}
+
 .edit-area {
   position: relative;
   min-height: 585px;
@@ -71,12 +79,9 @@ export default {
 }
 
 .mask {
+  .position-full;
   box-sizing: border-box;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  z-index: 1;
   border: 2px solid transparent;
 
   &.active {
@@ -85,21 +90,13 @@ export default {
 
   &:hover::before {
     content: '';
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    bottom: -2px;
-    left: -2px;
+    .mask-position;
     border: 1px solid #999;
   }
 
   &:hover::after {
     content: '';
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    bottom: -2px;
-    left: -2px;
+    .mask-position;
     border: 1px dashed #fff;
   }
 }

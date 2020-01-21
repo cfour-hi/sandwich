@@ -37,7 +37,11 @@
       <span class="tips">(最多6项)</span>
     </el-button>
 
-    <FormItemRequired v-model="form.required" @change="handleChangeRequired" />
+    <FormItemSwitch
+      v-model="form.required"
+      label="是否必填"
+      @change="handleChangeRequired"
+    />
   </div>
 </template>
 
@@ -48,7 +52,7 @@ import { QUESTION_TYPE } from '@/renderer/constants';
 import { generateDefaultOption } from '@/renderer/component-factory/config/choise-question';
 import MultipleOption from './multiple-option/index.vue';
 import FormItemInput from './form-item/Input.vue';
-import FormItemRequired from './form-item/Required.vue';
+import FormItemSwitch from './form-item/Switch.vue';
 
 const MAX_OPTION_LENGTH = 6;
 const MIN_OPTION_LENGTH = 2;
@@ -59,7 +63,7 @@ export default {
   components: {
     FormItemInput,
     MultipleOption,
-    FormItemRequired,
+    FormItemSwitch,
   },
 
   props: {

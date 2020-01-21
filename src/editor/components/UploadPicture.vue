@@ -9,6 +9,11 @@
       style="display: none;"
       @change="$emit('change', $event)"
     />
+
+    <!-- stop 修饰符防止删除时触发上传（打开系统文件选择窗口） -->
+    <div v-if="value" class="delete-btn-wrap" @click.stop="$emit('delete')">
+      <svg-icon filename="close"></svg-icon>
+    </div>
   </div>
 </template>
 
@@ -34,10 +39,12 @@ export default {
 <style lang="less" scoped>
 .upload-picture {
   .flex-center();
+  position: relative;
   box-sizing: border-box;
   height: 100%;
   border: 1px dashed #ccc;
   border-radius: 4px;
+  background-color: #fff;
   cursor: pointer;
 
   .picture {
@@ -46,9 +53,38 @@ export default {
     object-fit: contain;
   }
 
-  .svg-icon {
+  .svg-plus-circle {
     font-size: 24px;
     color: #ccc;
+  }
+
+  .delete-btn-wrap {
+    display: none;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 18px;
+    height: 18px;
+    border-bottom-left-radius: 100%;
+    text-align: right;
+    background-color: @color-danger;
+
+    .svg-close {
+      font-size: 12px;
+      color: #fff;
+    }
+  }
+
+  &:hover {
+    border-color: @color-brand;
+
+    .svg-plus-circle {
+      color: @color-brand;
+    }
+
+    .delete-btn-wrap {
+      display: block;
+    }
   }
 }
 </style>

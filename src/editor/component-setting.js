@@ -4,6 +4,7 @@ import controlPanelChoiseQuestion from './components/control-panel/ChoiseQuestio
 import controlPanelTextarea from './components/control-panel/Textarea.vue';
 import controlPanelButton from './components/control-panel/Button.vue';
 import controlPanelText from './components/control-panel/Text.vue';
+import controlPanelSwiper from './components/control-panel/Swiper.vue';
 
 export default {
   [COMPONENT_TYPE.picture]: {
@@ -25,5 +26,9 @@ export default {
   [COMPONENT_TYPE.text]: {
     label: '文字',
     controlPanel: controlPanelText,
+  },
+  [COMPONENT_TYPE.swiper]: {
+    label: '轮播图',
+    controlPanel: controlPanelSwiper,
   },
 };

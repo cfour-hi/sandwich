@@ -1,9 +1,8 @@
 <template>
-  <div class="form-item">
+  <div class="form-item flex-between">
     <div class="form-item__label">{{ label }}</div>
-    <el-input
+    <el-input-number
       v-model="proxyValue"
-      class="form-item__input"
       v-bind="proxyAttrs"
       v-on="$listeners"
     />
@@ -12,17 +11,17 @@
 
 <script>
 export default {
-  name: 'FormItemInput',
+  name: 'FormItemInputNumber',
 
   props: {
     value: {
-      type: String,
-      default: '',
+      type: Number,
+      default: 0,
     },
 
     label: {
       type: String,
-      required: true,
+      default: '',
     },
   },
 
@@ -38,7 +37,7 @@ export default {
 
     proxyAttrs() {
       return {
-        placeholder: '请输入',
+        'controls-position': 'right',
         ...this.$attrs,
       };
     },

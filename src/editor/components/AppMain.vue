@@ -28,6 +28,6 @@ export default {
 
 .top-blank,
 .bottom-blank {
-  height: 64px;
+  height: 32px;
 }
 </style>

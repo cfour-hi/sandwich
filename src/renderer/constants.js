@@ -4,6 +4,7 @@ export const COMPONENT_TYPE = {
   textarea: 'textarea',
   button: 'button',
   text: 'text',
+  swiper: 'swiper',
 };
 
 export const QUESTION_TYPE = {

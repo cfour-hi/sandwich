@@ -1,13 +1,19 @@
 <template>
   <div class="component__picture">
     <img v-if="component.src.url" :src="component.src.url" class="picture" />
-    <svg-icon v-else filename="image" />
+    <PlaceholderPicture v-else />
   </div>
 </template>
 
 <script>
+import PlaceholderPicture from '@/common/components/PlaceholderPicture.vue';
+
 export default {
   name: 'ComponentPicture',
+
+  components: {
+    PlaceholderPicture,
+  },
 
   props: {
     component: {
@@ -20,7 +26,6 @@ export default {
 
 <style lang="less" scoped>
 .component__picture {
-  background-color: #f2f6fc;
   .flex-center();
 
   .picture {

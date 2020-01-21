@@ -1,7 +1,11 @@
 <template>
   <div class="control-panel__picture">
     <div class="header">图片设置</div>
-    <UploadPicture :value="component.src.url" @change="handleChangeFile" />
+    <UploadPicture
+      :value="component.src.url"
+      @change="handleChangeFile"
+      @delete="handleDeletePicture"
+    />
   </div>
 </template>
 
@@ -26,13 +30,19 @@ export default {
 
   methods: {
     async handleChangeFile(e) {
-      const img = await getUploadImageWH(e.target.files[0], { width: '375px' });
+      const img = await getUploadImageWH(e.target.files[0]);
       this.$store.commit(UPDATE_ACTIVE_COMPONENT, {
         src: {
           url: img.url,
           width: img.naturalWidth,
           height: img.naturalHeight,
         },
+      });
+    },
+
+    handleDeletePicture() {
+      this.$store.commit(UPDATE_ACTIVE_COMPONENT, {
+        src: { url: '', width: 0, height: 0 },
       });
     },
   },

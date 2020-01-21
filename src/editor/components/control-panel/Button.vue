@@ -1,30 +1,21 @@
 <template>
   <div class="control-panel__button">
     <div class="header">按钮设置</div>
+
     <FormItemInput
       v-model="form.text"
       label="按钮文字"
       @blur="handleBlurText"
     />
 
-    <div class="form-item flex-between">
-      <div class="form-item__label">文字颜色</div>
-      <el-color-picker v-model="form.style.color"></el-color-picker>
-    </div>
+    <FormItemColorPicker v-model="form.style.color" label="文字颜色" />
 
-    <div class="form-item flex-between">
-      <div class="form-item__label">背景颜色</div>
-      <el-color-picker v-model="form.style.backgroundColor"></el-color-picker>
-    </div>
+    <FormItemColorPicker
+      v-model="form.style.backgroundColor"
+      label="背景颜色"
+    />
 
-    <div class="form-item flex-between">
-      <div class="form-item__label">文字尺寸</div>
-      <el-input-number
-        v-model="fontSize"
-        controls-position="right"
-        :min="12"
-      ></el-input-number>
-    </div>
+    <FormItemInputNumber v-model="fontSize" label="文字尺寸" :min="12" />
   </div>
 </template>
 
@@ -32,12 +23,16 @@
 import { parseUnitNumber } from '@/common/tool';
 import { UPDATE_ACTIVE_COMPONENT } from '@/editor/store/mutation-types';
 import FormItemInput from './form-item/Input.vue';
+import FormItemInputNumber from './form-item/InputNumber.vue';
+import FormItemColorPicker from './form-item/ColorPicker.vue';
 
 export default {
   name: 'ControlPanelButton',
 
   components: {
     FormItemInput,
+    FormItemInputNumber,
+    FormItemColorPicker,
   },
 
   props: {
