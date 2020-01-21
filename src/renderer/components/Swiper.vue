@@ -48,6 +48,7 @@ export default {
   data() {
     this.hammer = null;
     this.autoplayInterval = null;
+    this.sliding = false;
     return {
       activeIndex: 0, // 0 其实是最后一张
       speed: this.component.speed,
@@ -89,6 +90,10 @@ export default {
     processHammer() {
       this.hammer = new Hammer(this.$el);
       this.hammer.on('swipeleft swiperight', e => {
+        // 滑动中不允许进行手势滑动
+        if (this.sliding) return;
+        this.sliding = true;
+
         if (e.type === 'swipeleft') {
           this.activeIndex += 1;
         } else if (e.type === 'swiperight') {
@@ -101,6 +106,7 @@ export default {
       clearInterval(this.autoplayInterval);
       if (this.component.autoplay && this.component.pictures.length > 1) {
         this.autoplayInterval = setInterval(() => {
+          this.sliding = true;
           this.activeIndex += 1;
         }, this.component.delay * 1000);
       }
@@ -131,6 +137,7 @@ export default {
       setTimeout(() => {
         // 开启过渡效果
         this.speed = this.component.speed;
+        this.sliding = false;
       }, 0);
     },
   },
