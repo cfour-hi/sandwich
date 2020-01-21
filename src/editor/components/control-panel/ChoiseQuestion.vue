@@ -4,10 +4,7 @@
 
     <div class="form-item flex-between">
       <div class="form-item__label">题目类型</div>
-      <el-radio-group
-        v-model="form.quesType"
-        @change="handleChangeQuestionType"
-      >
+      <el-radio-group v-model="form.quesType" @change="handleChangeQuestionType">
         <el-radio-button label="radio">单选</el-radio-button>
         <el-radio-button label="checkbox">多选</el-radio-button>
       </el-radio-group>
@@ -37,11 +34,7 @@
       <span class="tips">(最多6项)</span>
     </el-button>
 
-    <FormItemSwitch
-      v-model="form.required"
-      label="是否必填"
-      @change="handleChangeRequired"
-    />
+    <FormItemSwitch v-model="form.required" label="是否必填" @change="handleChangeRequired" />
   </div>
 </template>
 

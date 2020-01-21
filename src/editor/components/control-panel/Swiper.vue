@@ -17,11 +17,7 @@
       </div>
     </div>
 
-    <FormItemSwitch
-      v-model="form.autoplay"
-      label="自动轮播"
-      @change="handleChangeAutoplay"
-    />
+    <FormItemSwitch v-model="form.autoplay" label="自动轮播" @change="handleChangeAutoplay" />
 
     <FormItemInputNumber
       v-if="form.autoplay"
@@ -36,7 +32,12 @@
 
 <script>
 import { UPDATE_ACTIVE_COMPONENT } from '@/editor/store/mutation-types';
-import { getUploadImageWH } from '@/common/tool';
+import {
+  getImageNaturalWH,
+  getImageHeightOfSpecifialWidth,
+  convertPicture2Base64,
+} from '@/common/tool';
+import { PHONE_WIDTH } from '@/editor/constants';
 import UploadPicture from '../UploadPicture.vue';
 import FormItemSwitch from './form-item/Switch.vue';
 import FormItemInputNumber from './form-item/InputNumber.vue';
@@ -72,12 +73,19 @@ export default {
 
   methods: {
     async handleChangeFile(index, e) {
-      const img = await getUploadImageWH(e.target.files[0]);
+      const [file] = e.target.files;
+      const url = window.URL.createObjectURL(file);
+      const [{ naturalWidth, naturalHeight }, height] = await Promise.all([
+        getImageNaturalWH(url),
+        getImageHeightOfSpecifialWidth(url, PHONE_WIDTH),
+      ]);
+      const base64 = await convertPicture2Base64(url, PHONE_WIDTH, height);
       const picture = {
-        url: img.url,
-        width: img.naturalWidth,
-        height: img.naturalHeight,
+        url: base64,
+        width: naturalWidth,
+        height: naturalHeight,
       };
+
       if (index < 0) {
         this.form.pictures.push(picture);
       } else {

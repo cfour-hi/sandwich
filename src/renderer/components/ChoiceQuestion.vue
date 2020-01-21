@@ -5,11 +5,7 @@
       <div class="desc">{{ component.desc }}</div>
     </div>
     <ul class="option-list">
-      <li
-        v-for="(option, index) in component.options"
-        :key="index"
-        class="option"
-      >
+      <li v-for="(option, index) in component.options" :key="index" class="option">
         <input
           :id="`option-${_uid}-${index}`"
           :type="component.quesType"

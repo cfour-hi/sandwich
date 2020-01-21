@@ -14,11 +14,7 @@
 
     <FormItemInput v-model="form.desc" label="描述" @blur="handleBlurDesc" />
 
-    <FormItemSwitch
-      v-model="form.required"
-      label="是否必填"
-      @change="handleChangeRequired"
-    />
+    <FormItemSwitch v-model="form.required" label="是否必填" @change="handleChangeRequired" />
   </div>
 </template>
 

@@ -4,12 +4,7 @@
 
     <div class="form-item">
       <div class="form-item__label">文案</div>
-      <el-input
-        v-model="form.text"
-        :rows="3"
-        type="textarea"
-        @blur="handleBlurText"
-      />
+      <el-input v-model="form.text" :rows="3" type="textarea" @blur="handleBlurText" />
     </div>
 
     <FormItemInputNumber v-model="fontSize" label="文字尺寸" :min="12" />
@@ -44,11 +39,7 @@
 
     <FormItemInputNumber v-model="letterSpacing" label="字间距" :min="0" />
 
-    <FormItemInputNumber
-      v-model="form.style.lineHeight"
-      label="行间距"
-      :min="1"
-    />
+    <FormItemInputNumber v-model="form.style.lineHeight" label="行间距" :min="1" />
   </div>
 </template>
 

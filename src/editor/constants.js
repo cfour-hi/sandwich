@@ -1,0 +1,2 @@
+export const PHONE_WIDTH = 375;
+export const SANDWICH_JSON_DATA = 'SANDWICH_JSON_DATA';

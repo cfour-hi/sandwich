@@ -10,11 +10,7 @@
         <img :src="seamlessPictures[1].url" alt="" class="picture" />
       </li>
 
-      <li
-        v-for="(picture, index) in component.pictures"
-        :key="index"
-        class="picture-item"
-      >
+      <li v-for="(picture, index) in component.pictures" :key="index" class="picture-item">
         <img :src="picture.url" alt="" class="picture" />
       </li>
 

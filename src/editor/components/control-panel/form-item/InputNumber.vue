@@ -1,11 +1,7 @@
 <template>
   <div class="form-item flex-between">
     <div class="form-item__label">{{ label }}</div>
-    <el-input-number
-      v-model="proxyValue"
-      v-bind="proxyAttrs"
-      v-on="$listeners"
-    />
+    <el-input-number v-model="proxyValue" v-bind="proxyAttrs" v-on="$listeners" />
   </div>
 </template>
 

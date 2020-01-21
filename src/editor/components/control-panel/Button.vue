@@ -2,18 +2,11 @@
   <div class="control-panel__button">
     <div class="header">按钮设置</div>
 
-    <FormItemInput
-      v-model="form.text"
-      label="按钮文字"
-      @blur="handleBlurText"
-    />
+    <FormItemInput v-model="form.text" label="按钮文字" @blur="handleBlurText" />
 
     <FormItemColorPicker v-model="form.style.color" label="文字颜色" />
 
-    <FormItemColorPicker
-      v-model="form.style.backgroundColor"
-      label="背景颜色"
-    />
+    <FormItemColorPicker v-model="form.style.backgroundColor" label="背景颜色" />
 
     <FormItemInputNumber v-model="fontSize" label="文字尺寸" :min="12" />
   </div>

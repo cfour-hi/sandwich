@@ -34,19 +34,31 @@ export const assign = (to, from) => {
 };
 
 /**
- * 获取上传图片的宽高值
- * 图片的宽高分为原始宽高和 DOM 元素宽高
- * @param {File} file 图片文件
- * @param {Object} options
- *  @param {String} width 元素 DOM 宽度值
- *  未设置 width 值的情况下，图片原始宽高与 DOM 元素宽高一致
- * @return {Object}
+ * 本地获取图片原始宽高
+ * @param {String|Blob} url
  */
-export const getUploadImageWH = async (file, { width } = {}) => {
-  const img = document.createElement('img');
-  if (width) img.style.width = width;
-  const url = window.URL.createObjectURL(file);
+export const getImageNaturalWH = async url => {
+  let img = document.createElement('img');
+  await new Promise(resolve => {
+    img.onload = resolve;
+    img.src = url;
+  });
+  const result = {
+    naturalWidth: img.naturalWidth,
+    naturalHeight: img.naturalHeight,
+  };
+  img = null;
+  return result;
+};
 
+/**
+ * 本地获取图片在指定宽度情况下的等比高度
+ * @param {String|Blob} url
+ * @param {Number} width
+ */
+export const getImageHeightOfSpecifialWidth = async (url, width) => {
+  let img = document.createElement('img');
+  img.style.width = `${width}px`;
   await new Promise(resolve => {
     img.onload = resolve;
     /**
@@ -59,17 +71,34 @@ export const getUploadImageWH = async (file, { width } = {}) => {
     document.body.prepend(img);
     img.src = url;
   });
-
   const rect = img.getBoundingClientRect();
   img.remove();
+  img = null;
+  return rect.height;
+};
 
-  return {
-    url,
-    width: rect.width,
-    height: rect.height,
-    naturalWidth: img.naturalWidth,
-    naturalHeight: img.naturalHeight,
-  };
+/**
+ * 将图片转换为 base64 格式
+ * @param {String|Blob} url
+ * @param {Number} width
+ * @param {Number} height
+ */
+export const convertPicture2Base64 = async (url, width, height) => {
+  let img = document.createElement('img');
+  await new Promise(resolve => {
+    img.onload = resolve;
+    img.src = url;
+  });
+
+  let canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  canvas.width = width;
+  canvas.height = height;
+  context.drawImage(img, 0, 0, width, height);
+  const base64 = canvas.toDataURL('image/webp', 0.5);
+  img = null;
+  canvas = null;
+  return base64;
 };
 
 /**
