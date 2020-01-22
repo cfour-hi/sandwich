@@ -1,27 +1,37 @@
 <template>
   <div class="component__swiper">
-    <ul
-      v-if="component.pictures.length"
-      class="picture-list"
-      :style="pictureListStyle"
-      @transitionend="handleTransitionend"
-    >
-      <li v-if="seamlessPictures.length" class="picture-item">
-        <img :src="seamlessPictures[1].url" alt class="picture" />
-      </li>
-
-      <li
-        v-for="(picture, index) in component.pictures"
-        :key="index"
-        class="picture-item"
+    <template v-if="component.pictures.length">
+      <div
+        class="picture-list"
+        :style="pictureListStyle"
+        @transitionend="handleTransitionend"
       >
-        <img :src="picture.url" alt class="picture" />
-      </li>
+        <div v-if="seamlessPictures.length" class="picture-item">
+          <img :src="seamlessPictures[1].url" alt class="picture" />
+        </div>
 
-      <li v-if="seamlessPictures.length" class="picture-item">
-        <img :src="seamlessPictures[0].url" alt class="picture" />
-      </li>
-    </ul>
+        <div
+          v-for="(picture, index) in component.pictures"
+          :key="index"
+          class="picture-item"
+        >
+          <img :src="picture.url" alt class="picture" />
+        </div>
+
+        <div v-if="seamlessPictures.length" class="picture-item">
+          <img :src="seamlessPictures[0].url" alt class="picture" />
+        </div>
+      </div>
+
+      <div class="pagination">
+        <div
+          v-for="(picture, index) in component.pictures"
+          :key="index"
+          :class="{ active: checkIsActiveBullet(index) }"
+          class="bullet"
+        ></div>
+      </div>
+    </template>
 
     <PlaceholderPicture v-else />
   </div>
@@ -94,6 +104,11 @@ export default {
   mounted() {
     this.processHammer();
     this.processAutoplay();
+    document.addEventListener('visibilitychange', this.onvisibilitychange);
+  },
+
+  beforeDestroy() {
+    document.removeEventListener('visibilitychange', this.onvisibilitychange);
   },
 
   methods: {
@@ -120,6 +135,23 @@ export default {
           this.activeIndex += 1;
         }, this.component.delay * 1000);
       }
+    },
+
+    onvisibilitychange() {
+      if (document.visibilityState === 'visible') {
+        this.processAutoplay();
+      } else {
+        clearInterval(this.autoplayInterval);
+      }
+    },
+
+    checkIsActiveBullet(index) {
+      const { pictures } = this.component;
+      return (
+        (index === 0 && this.activeIndex === pictures.length + 1) ||
+        (index === pictures.length - 1 && this.activeIndex === 0) ||
+        this.activeIndex - 1 === index
+      );
     },
 
     handleTransitionend() {
@@ -174,6 +206,26 @@ export default {
 
   .picture {
     width: 100%;
+  }
+}
+
+.pagination {
+  position: absolute;
+  bottom: 16px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.bullet {
+  width: 8px;
+  height: 8px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background-color: #ccc;
+
+  &.active {
+    background-color: @color-brand;
   }
 }
 </style>
