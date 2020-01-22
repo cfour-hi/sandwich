@@ -50,7 +50,8 @@ export default {
     this.autoplayInterval = null;
     this.sliding = false;
     return {
-      activeIndex: 0, // 0 其实是最后一张
+      // 多张图在初始化的时候索引 1 才是第一张图
+      activeIndex: this.component.pictures.length > 1 ? 1 : 0,
       speed: this.component.speed,
     };
   },
@@ -77,6 +78,15 @@ export default {
       deep: true,
       handler() {
         this.processAutoplay();
+      },
+    },
+
+    'component.autoplay': {
+      handler(v) {
+        if (!v && this.seamlessPictures.length) {
+          // 关闭自动轮播并且有多张图的情况下切回首图
+          this.activeIndex = 1;
+        }
       },
     },
   },
@@ -149,7 +159,7 @@ export default {
   // 蒙层防止 PC 端鼠标滑动选中图片
   &::after {
     content: '';
-    .position-full;
+    .position-full__absolute;
   }
 }
 

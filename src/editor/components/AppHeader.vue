@@ -3,7 +3,7 @@
     <svg-icon filename="sandwich" />
     <div class="right">
       <svg-icon filename="save" @click.native="handleClickSave" />
-      <svg-icon filename="eye" @click.native="$emit('preview')" />
+      <svg-icon filename="eye" @click.native="handleClickPreview" />
     </div>
   </el-header>
 </template>
@@ -18,6 +18,11 @@ export default {
     handleClickSave() {
       saveSandwichPage();
       this.$message.success('保存成功');
+    },
+
+    handleClickPreview() {
+      this.handleClickSave();
+      this.$emit('preview');
     },
   },
 };

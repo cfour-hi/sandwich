@@ -123,7 +123,7 @@ export default {
 <style lang="less" scoped>
 .control-panel__swiper {
   &::before {
-    .position-full;
+    .position-full__absolute;
   }
 }
 

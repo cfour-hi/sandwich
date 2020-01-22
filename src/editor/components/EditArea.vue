@@ -87,7 +87,7 @@ export default {
 }
 
 .mask {
-  .position-full;
+  .position-full__absolute;
   z-index: 1;
   box-sizing: border-box;
   border: 2px solid transparent;

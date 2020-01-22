@@ -5,9 +5,18 @@
 }
 
 .position-full {
-  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.position-full__absolute {
+  position: absolute;
+  .position-full;
+}
+
+.position-full__fixed {
+  position: fixed;
+  .position-full;
 }

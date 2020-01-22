@@ -4,7 +4,7 @@ export default (attrs = {}) => ({
   type: COMPONENT_TYPE.swiper,
   pictures: [], // picture => { url: '', width: 0; height: 0 }
   speed: 0.3,
-  autoplay: false,
+  autoplay: true,
   delay: 2,
   ...attrs,
 });

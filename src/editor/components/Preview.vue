@@ -1,6 +1,5 @@
 <template>
-  <div class="preview">
-    <div class="mask"></div>
+  <div v-mask="{ click: handleClickMask }" class="preview">
     <div class="mobile-phone" :style="mobilePhoneStyle">
       <iframe
         ref="iframe"
@@ -19,9 +18,14 @@ import {
   MOBILE_PHONE_HEIGHT,
   PREVIEW_ORIGIN,
 } from '@/editor/constants';
+import mask from '@/editor/directives/mask';
 
 export default {
   name: 'Preview',
+
+  directives: {
+    mask,
+  },
 
   data() {
     this.PREVIEW_ORIGIN = PREVIEW_ORIGIN;
@@ -55,26 +59,24 @@ export default {
         );
       }
     },
+
+    handleClickMask() {
+      this.$emit('clickMask');
+    },
   },
 };
 </script>
 
 <style lang="less" scoped>
 .preview {
-  .position-full;
+  .position-full__fixed;
   z-index: 1;
 }
 
-.mask {
-  .position-full;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
 .mobile-phone {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -55%);
+  position: relative;
+  top: 64px;
+  margin: 0 auto;
   padding: 8px;
   border-radius: 8px;
   background-color: #fff;

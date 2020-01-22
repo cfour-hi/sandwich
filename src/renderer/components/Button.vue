@@ -22,12 +22,14 @@ export default {
 <style lang="less" scoped>
 .component__button {
   padding: 16px;
+}
 
-  .button {
-    width: 100%;
-    padding: 16px;
-    border: none;
-    border-radius: 4px;
-  }
+.button {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
 }
 </style>
