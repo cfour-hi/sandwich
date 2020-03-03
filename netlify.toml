@@ -1,2 +1,2 @@
 [context.production]
-  environment = { SITE_DOMAIN = "https://sandwich-site.netlify.com/" }
+  environment = { VUE_APP_SITE_DOMAIN = "https://sandwich-site.netlify.com/" }
