@@ -4,17 +4,12 @@
 
     <div class="form-item">
       <div class="form-item__label">文案</div>
-      <el-input
-        v-model="form.text"
-        :rows="3"
-        type="textarea"
-        @blur="handleBlurText"
-      />
+      <el-input v-model="props.text" :rows="3" type="textarea" />
     </div>
 
-    <FormItemInputNumber v-model="fontSize" label="文字尺寸" :min="12" />
+    <FormItemInputNumber v-model="style.fontSize" label="文字尺寸" :min="12" />
 
-    <FormItemColorPicker v-model="form.style.color" label="文字颜色" />
+    <FormItemColorPicker v-model="style.color" label="文字颜色" />
 
     <div class="form-item">
       <div class="form-item__label">文字样式</div>
@@ -23,7 +18,7 @@
           v-for="icon in textStyleIcons"
           :key="icon.filename"
           :filename="icon.filename"
-          :class="{ active: form.style[icon.key] === icon.activeVal }"
+          :class="{ active: style[icon.key] === icon.activeVal }"
           @click.native="handleClickTextStyle(icon)"
         ></svg-icon>
       </div>
@@ -36,24 +31,23 @@
           v-for="icon in textAlignIcons"
           :key="icon.filename"
           :filename="icon.filename"
-          :class="{ active: form.style[icon.key] === icon.activeVal }"
+          :class="{ active: style[icon.key] === icon.activeVal }"
           @click.native="handleClickTextStyle(icon)"
         ></svg-icon>
       </div>
     </div>
 
-    <FormItemInputNumber v-model="letterSpacing" label="字间距" :min="0" />
-
     <FormItemInputNumber
-      v-model="form.style.lineHeight"
-      label="行间距"
-      :min="1"
+      v-model="style.letterSpacing"
+      label="字间距"
+      :min="0"
     />
+
+    <FormItemInputNumber v-model="style.lineHeight" label="行间距" :min="1" />
   </div>
 </template>
 
 <script>
-import { parseUnitNumber } from '@/common/tool';
 import { UPDATE_ACTIVE_COMPONENT } from '@/editor/store/mutation-types';
 import FormItemInputNumber from './form-item/InputNumber.vue';
 import FormItemColorPicker from './form-item/ColorPicker.vue';
@@ -121,42 +115,35 @@ export default {
       },
     ];
 
-    const form = JSON.parse(JSON.stringify(this.component));
-    const fontSize = parseUnitNumber(form.style.fontSize);
-    const letterSpacing = parseUnitNumber(form.style.letterSpacing);
+    const props = JSON.parse(JSON.stringify(this.component.props));
+    const style = JSON.parse(JSON.stringify(this.component.style));
 
     return {
-      form,
-      fontSize,
-      letterSpacing,
+      props,
+      style,
     };
   },
 
   watch: {
-    'form.style': {
+    props: {
+      deep: true,
+      handler: function(v) {
+        this.$store.commit(UPDATE_ACTIVE_COMPONENT, { props: v });
+      },
+    },
+
+    style: {
       deep: true,
       handler: function(v) {
         this.$store.commit(UPDATE_ACTIVE_COMPONENT, { style: v });
       },
     },
-
-    fontSize(v) {
-      this.form.style.fontSize = `${v}px`;
-    },
-
-    letterSpacing(v) {
-      this.form.style.letterSpacing = `${v}px`;
-    },
   },
 
   methods: {
-    handleBlurText() {
-      this.$store.commit(UPDATE_ACTIVE_COMPONENT, { text: this.form.text });
-    },
-
     handleClickTextStyle({ key, activeVal, defaultVal }) {
-      const val = this.form.style[key];
-      this.form.style[key] = val === activeVal ? defaultVal : activeVal;
+      const val = this.style[key];
+      this.style[key] = val === activeVal ? defaultVal : activeVal;
     },
   },
 };

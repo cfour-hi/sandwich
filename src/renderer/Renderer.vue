@@ -1,51 +1,47 @@
 <template>
   <div class="renderer">
-    <div
-      v-for="(component, index) in components"
-      :id="component.id"
+    <RenderComponent
+      v-for="(component, index) in rootChildComponents"
       :key="component.id"
-      class="component-wrap"
+      :components="components"
+      :component="component"
     >
-      <slot name="before-component" :component="component" :index="index" />
+      <template #before-component>
+        <slot name="before-component" :component="component" :index="index" />
+      </template>
 
-      <component
-        :is="componentTypes[component.type]"
-        :component="component"
-        class="component"
-      />
-    </div>
+      <!-- <template #before-sub-component="{ component }">
+        <slot name="before-sub-component" :component="component" />
+      </template> -->
+    </RenderComponent>
   </div>
 </template>
 
 <script>
-import { COMPONENT_TYPE } from './constants';
-import Picture from './components/Picture.vue';
-import ChoiceQuestion from './components/ChoiceQuestion.vue';
-import Textarea from './components/Textarea.vue';
-import Button from './components/Button.vue';
-import Text from './components/Text.vue';
-import Swiper from './components/Swiper.vue';
+import RenderComponent from './RenderComponent.vue';
 
 export default {
   name: 'Renderer',
 
+  components: {
+    RenderComponent,
+  },
+
   props: {
     components: {
-      type: Array,
+      type: Object,
       required: true,
     },
   },
 
   data() {
-    this.componentTypes = {
-      [COMPONENT_TYPE.picture]: Picture,
-      [COMPONENT_TYPE.choiseQuestion]: ChoiceQuestion,
-      [COMPONENT_TYPE.textarea]: Textarea,
-      [COMPONENT_TYPE.button]: Button,
-      [COMPONENT_TYPE.text]: Text,
-      [COMPONENT_TYPE.swiper]: Swiper,
-    };
     return {};
+  },
+
+  computed: {
+    rootChildComponents() {
+      return this.components.root.children.map(id => this.components[id]);
+    },
   },
 };
 </script>
@@ -53,14 +49,5 @@ export default {
 <style lang="less" scoped>
 .renderer {
   line-height: 1.5;
-}
-
-.component-wrap {
-  position: relative;
-
-  .component {
-    overflow: hidden;
-    font-size: 0; // 避免元素之间的空白会产生不必要的距离
-  }
 }
 </style>

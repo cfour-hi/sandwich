@@ -6,7 +6,7 @@
       <div class="form-item__label">添加素材</div>
       <div class="picture-list">
         <UploadPicture
-          v-for="(picture, index) in form.pictures"
+          v-for="(picture, index) in props.pictures"
           :key="index"
           :value="picture.url"
           @change="handleChangeFile(index, $event)"
@@ -17,25 +17,19 @@
       </div>
     </div>
 
-    <FormItemSwitch
-      v-model="form.autoplay"
-      label="自动轮播"
-      @change="handleChangeAutoplay"
-    />
+    <FormItemSwitch v-model="props.autoplay" label="自动轮播" />
 
     <FormItemInputNumber
-      v-if="form.autoplay"
-      v-model="form.delay"
+      v-if="props.autoplay"
+      v-model="props.delay"
       label="轮播速度"
       :min="1"
       :step="0.5"
-      @change="handleChangeDelay"
     />
   </div>
 </template>
 
 <script>
-import { UPDATE_ACTIVE_COMPONENT } from '@/editor/store/mutation-types';
 import {
   getImageNaturalWH,
   getImageHeightOfSpecifialWidth,
@@ -45,6 +39,7 @@ import { MOBILE_PHONE_WIDTH } from '@/editor/constants';
 import UploadPicture from '../UploadPicture.vue';
 import FormItemSwitch from './form-item/Switch.vue';
 import FormItemInputNumber from './form-item/InputNumber.vue';
+import mixinPropsStyle from './mixins/props-style';
 
 export default {
   name: 'ComponentPanelSwiper',
@@ -55,23 +50,12 @@ export default {
     FormItemInputNumber,
   },
 
+  mixins: [mixinPropsStyle],
+
   props: {
     component: {
       type: Object,
       required: true,
-    },
-  },
-
-  data() {
-    const form = JSON.parse(JSON.stringify(this.component));
-    return { form };
-  },
-
-  watch: {
-    'form.pictures': {
-      handler(v) {
-        this.$store.commit(UPDATE_ACTIVE_COMPONENT, { pictures: v });
-      },
     },
   },
 
@@ -95,26 +79,14 @@ export default {
       };
 
       if (index < 0) {
-        this.form.pictures.push(picture);
+        this.props.pictures.push(picture);
       } else {
-        this.form.pictures.splice(index, 1, picture);
+        this.props.pictures.splice(index, 1, picture);
       }
     },
 
     handleDeletePicture(index) {
-      this.form.pictures.splice(index, 1);
-    },
-
-    handleChangeAutoplay() {
-      this.$store.commit(UPDATE_ACTIVE_COMPONENT, {
-        autoplay: this.form.autoplay,
-      });
-    },
-
-    handleChangeDelay() {
-      this.$store.commit(UPDATE_ACTIVE_COMPONENT, {
-        delay: this.form.delay,
-      });
+      this.props.pictures.splice(index, 1);
     },
   },
 };

@@ -1,33 +1,56 @@
 <template>
   <el-aside width="272px">
-    <ul class="comp-list">
+    <ul class="component-list">
       <li
-        v-for="(comp, type) in componentSetting"
+        v-for="(component, type) in componentMenu.normal"
         :key="type"
-        class="comp-item"
-        @click="handleClickComp(type)"
+        class="component-item"
+        @click="handleClickComponent(type)"
       >
-        <svg-icon :filename="comp.iconname"></svg-icon>
-        <span>{{ comp.label }}</span>
+        <svg-icon :filename="component.iconname"></svg-icon>
+        <span>{{ component.label }}</span>
       </li>
     </ul>
+
+    <template v-if="activeComponent.type === COMPONENT_TYPE.表单">
+      <div>{{ componentMenu.normal[activeComponent.type].label }}</div>
+      <ul class="component-list">
+        <li
+          v-for="(component, type) in componentMenu[COMPONENT_TYPE.表单]"
+          :key="type"
+          class="component-item"
+          @click="handleClickComponent(type, activeComponent.id)"
+        >
+          <svg-icon :filename="component.iconname"></svg-icon>
+          <span>{{ component.label }}</span>
+        </li>
+      </ul>
+    </template>
   </el-aside>
 </template>
 
 <script>
-import componentSetting from '../component-setting';
+import * as componentMenu from '../component-menu';
+import { COMPONENT_TYPE } from '@/renderer/constants';
 
 export default {
   name: 'AppComponentPanel',
 
   data() {
-    this.componentSetting = componentSetting;
+    this.componentMenu = componentMenu;
+    this.COMPONENT_TYPE = COMPONENT_TYPE;
     return {};
   },
 
+  computed: {
+    activeComponent() {
+      return this.$store.getters.activeComponent || {};
+    },
+  },
+
   methods: {
-    handleClickComp(type) {
-      this.$store.dispatch('addComponent', { type });
+    handleClickComponent(type, parent) {
+      this.$store.dispatch('addComponent', { type, parent });
     },
   },
 };
@@ -40,14 +63,14 @@ export default {
   padding: 16px;
   box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.1);
 
-  .comp-list {
+  .component-list {
     display: flex;
     flex-wrap: wrap;
     width: 240px;
     border-top: 1px solid #eee;
     border-left: 1px solid #eee;
 
-    .comp-item {
+    .component-item {
       .flex-center();
       flex-direction: column;
       box-sizing: border-box;

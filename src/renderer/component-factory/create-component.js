@@ -5,12 +5,19 @@ export const config = {};
 (r => {
   r.keys().forEach(k => {
     const defaultFn = r(k).default;
-    // 组件配置必须存在 type 属性
-    config[defaultFn().type] = defaultFn;
+    const [type] = k.match(/(?<=\/)[^.]+(?=\.js$)/);
+    config[type] = defaultFn;
   });
 })(require.context('./config', false, /\.js$/));
 
-export default (type, { attrs = {} } = {}) => ({
-  id: genRandomCode(),
-  ...config[type](attrs),
-});
+function createComponent(type) {
+  const id = genRandomCode();
+  const componentMenu = config[type]();
+  return {
+    id,
+    type,
+    ...componentMenu,
+  };
+}
+
+export default createComponent;

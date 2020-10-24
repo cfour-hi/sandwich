@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Renderer :components="components" />
+    <Renderer v-if="components" :components="components" />
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
 
   data() {
     return {
-      components: [],
+      components: null,
     };
   },
 };

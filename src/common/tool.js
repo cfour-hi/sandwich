@@ -1,3 +1,5 @@
+export const noop = () => {};
+
 /**
  * 包装 hasOwnProperty
  * @param {Object} obj
@@ -109,4 +111,18 @@ export const parseUnitNumber = unit => {
   if (toRawType(unit) !== 'String') return 0;
   const n = Number(unit.replace(/px/, ''));
   return isNaN(n) ? 0 : n;
+};
+
+export const n2px = n => {
+  if (toRawType(n) === 'Number') {
+    return `${n}px`;
+  }
+  return n;
+};
+
+export const px2n = px => {
+  if (toRawType(px) === 'String') {
+    return parseInt(px);
+  }
+  return px;
 };

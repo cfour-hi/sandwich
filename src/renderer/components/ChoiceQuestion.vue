@@ -1,18 +1,18 @@
 <template>
   <div class="component__choice-question">
-    <div class="title" :class="{ required: component.required }">
-      {{ component.title }}
-      <div class="desc">{{ component.desc }}</div>
+    <div class="title" :class="{ required: component.props.required }">
+      {{ component.props.title }}
+      <div class="desc">{{ component.props.desc }}</div>
     </div>
     <ul class="option-list">
       <li
-        v-for="(option, index) in component.options"
+        v-for="(option, index) in component.props.options"
         :key="index"
         class="option"
       >
         <input
           :id="`option-${_uid}-${index}`"
-          :type="component.quesType"
+          :type="component.props.quesType"
           :checked="option.checked"
           :name="`question${_uid}`"
           class="option-input"

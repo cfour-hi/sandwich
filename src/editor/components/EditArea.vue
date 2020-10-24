@@ -3,15 +3,15 @@
     <Renderer :components="components">
       <template #before-component="{ component, index }">
         <OperateBar
-          v-if="activeComponentId === component.id"
+          v-if="checkIsActive(component)"
           :disabled-up="index === 0"
           :disabled-down="index === components.length - 1"
-          @move="handleMoveComponent"
+          @move="handleMoveComponent(component.id, $event)"
           @delete="handleDeleteComponent"
         />
 
         <div
-          :class="{ active: activeComponentId === component.id }"
+          :class="{ active: checkIsActive(component) }"
           class="mask"
           @click="handleClickMask(component.id)"
         ></div>
@@ -27,7 +27,6 @@ import { mapState } from 'vuex';
 import {
   SET_ACTIVE_COMPONENT_ID,
   MOVE_COMPONENT,
-  DELETE_ACTIVE_COMPONENT,
 } from '@/editor/store/mutation-types';
 import OperateBar from './OperateBar.vue';
 import { MOBILE_PHONE_WIDTH, MOBILE_PHONE_HEIGHT } from '@/editor/constants';
@@ -54,16 +53,23 @@ export default {
   }),
 
   methods: {
+    checkIsActive(component) {
+      return (
+        component.id === this.activeComponentId ||
+        component.children?.includes(this.activeComponentId)
+      );
+    },
+
     handleClickMask(id) {
       this.$store.commit(SET_ACTIVE_COMPONENT_ID, id);
     },
 
-    handleMoveComponent(direction) {
-      this.$store.commit(MOVE_COMPONENT, direction);
+    handleMoveComponent(id, dir) {
+      this.$store.commit(MOVE_COMPONENT, { id, dir });
     },
 
     handleDeleteComponent() {
-      this.$store.commit(DELETE_ACTIVE_COMPONENT);
+      this.$store.dispatch('deleteComponent');
     },
   },
 };
@@ -107,6 +113,15 @@ export default {
     .mask-position;
     border: 1px dashed #fff;
   }
+}
+
+.sub-mask {
+  .position-full__absolute;
+  z-index: 1;
+}
+
+.sub-mask:hover {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .first-screen-line {

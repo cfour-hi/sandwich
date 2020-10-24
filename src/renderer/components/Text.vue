@@ -1,6 +1,6 @@
 <template>
   <div class="component__text">
-    <div :style="component.style">{{ component.text }}</div>
+    <div :style="component.style">{{ component.props.text }}</div>
   </div>
 </template>
 

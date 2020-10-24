@@ -1,13 +1,13 @@
 <template>
   <div class="component__textarea">
-    <div class="title" :class="{ required: component.required }">
-      {{ component.title }}
-      <div class="desc">{{ component.desc }}</div>
+    <div class="title" :class="{ required: component.props.required }">
+      {{ component.props.title }}
+      <div class="desc">{{ component.props.desc }}</div>
     </div>
 
     <textarea
       :value="value"
-      :rows="component.rows"
+      :rows="component.props.rows"
       class="textarea"
       placeholder="请输入"
     />

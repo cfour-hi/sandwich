@@ -4,19 +4,21 @@
     <el-input-number
       v-model="proxyValue"
       v-bind="proxyAttrs"
-      v-on="$listeners"
+      v-on="proxyListeners"
     />
   </div>
 </template>
 
 <script>
+import { px2n, n2px, toRawType, noop } from '@/common/tool';
+
 export default {
   name: 'FormItemInputNumber',
 
   props: {
     value: {
-      type: Number,
-      default: 0,
+      type: [String, Number],
+      required: true,
     },
 
     label: {
@@ -26,12 +28,16 @@ export default {
   },
 
   computed: {
+    valueType() {
+      return toRawType(this.value);
+    },
+
     proxyValue: {
       get() {
-        return this.value;
+        return px2n(this.value);
       },
       set(v) {
-        this.$emit('input', v);
+        this.$emit('input', this.valueType === 'String' ? n2px(v) : v);
       },
     },
 
@@ -40,6 +46,15 @@ export default {
         'controls-position': 'right',
         ...this.$attrs,
       };
+    },
+
+    proxyListeners: {
+      get() {
+        return {
+          ...this.$listeners,
+          input: noop,
+        };
+      },
     },
   },
 };

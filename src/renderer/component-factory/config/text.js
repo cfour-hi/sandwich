@@ -1,8 +1,7 @@
-import { COMPONENT_TYPE } from '@/renderer/constants';
-
-export default (attrs = {}) => ({
-  type: COMPONENT_TYPE.text,
-  text: '请输入文本内容',
+export default () => ({
+  props: {
+    text: '请输入文本内容',
+  },
   style: {
     fontSize: '14px',
     fontWeight: 'normal', // bold
@@ -14,5 +13,4 @@ export default (attrs = {}) => ({
     letterSpacing: '0px',
     lineHeight: 2,
   },
-  ...attrs,
 });

@@ -1,6 +1,10 @@
 <template>
   <div class="component__picture">
-    <img v-if="component.src.url" :src="component.src.url" class="picture" />
+    <img
+      v-if="component.props.src.url"
+      :src="component.props.src.url"
+      class="picture"
+    />
     <PlaceholderPicture v-else />
   </div>
 </template>

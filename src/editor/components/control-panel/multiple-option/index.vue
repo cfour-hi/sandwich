@@ -14,8 +14,8 @@
 
       <InputOptionLabel
         :value="option.label"
-        @input="$emit('inputLabel', index, $event)"
-        @blur="$emit('blurLabel', index, $event.target.value)"
+        @input="$emit('input-label', index, $event)"
+        @blur="$emit('blur-label', index, $event.target.value)"
       />
 
       <svg-icon filename="delete" @click.native="handleClickDelete(index)" />
@@ -40,7 +40,7 @@ export default {
   props: {
     quesType: {
       type: String,
-      default: QUESTION_TYPE.radio,
+      default: QUESTION_TYPE.单选题,
       validator: v => Object.values(QUESTION_TYPE).includes(v),
     },
 

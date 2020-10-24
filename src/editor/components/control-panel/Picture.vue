@@ -2,7 +2,7 @@
   <div class="control-panel__picture">
     <div class="header">图片设置</div>
     <UploadPicture
-      :value="component.src.url"
+      :value="component.props.src.url"
       @change="handleChangeFile"
       @delete="handleDeletePicture"
     />
@@ -47,17 +47,21 @@ export default {
         height
       );
       this.$store.commit(UPDATE_ACTIVE_COMPONENT, {
-        src: {
-          url: base64,
-          width: naturalWidth,
-          height: naturalHeight,
+        props: {
+          src: {
+            url: base64,
+            width: naturalWidth,
+            height: naturalHeight,
+          },
         },
       });
     },
 
     handleDeletePicture() {
       this.$store.commit(UPDATE_ACTIVE_COMPONENT, {
-        src: { url: '', width: 0, height: 0 },
+        props: {
+          src: { url: '', width: 0, height: 0 },
+        },
       });
     },
   },

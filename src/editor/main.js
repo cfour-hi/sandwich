@@ -15,7 +15,9 @@ Vue.use(Renderer);
 const data = window.localStorage.getItem(SANDWICH_JSON_DATA);
 if (data) {
   const { components } = JSON.parse(data);
-  store.commit(SET_COMPONENTS, components);
+  if (components) {
+    store.commit(SET_COMPONENTS, components);
+  }
 }
 
 new Vue({

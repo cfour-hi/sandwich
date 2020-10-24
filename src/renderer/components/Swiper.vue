@@ -1,6 +1,6 @@
 <template>
   <div class="component__swiper">
-    <template v-if="component.pictures.length">
+    <template v-if="component.props.pictures.length">
       <div
         class="picture-list"
         :style="pictureListStyle"
@@ -11,7 +11,7 @@
         </div>
 
         <div
-          v-for="(picture, index) in component.pictures"
+          v-for="(picture, index) in component.props.pictures"
           :key="index"
           class="picture-item"
         >
@@ -25,7 +25,7 @@
 
       <div class="pagination">
         <div
-          v-for="(picture, index) in component.pictures"
+          v-for="(picture, index) in component.props.pictures"
           :key="index"
           :class="{ active: checkIsActiveBullet(index) }"
           class="bullet"
@@ -61,8 +61,8 @@ export default {
     this.sliding = false;
     return {
       // 多张图在初始化的时候索引 1 才是第一张图
-      activeIndex: this.component.pictures.length > 1 ? 1 : 0,
-      speed: this.component.speed,
+      activeIndex: this.component.props.pictures.length > 1 ? 1 : 0,
+      speed: this.component.props.speed,
     };
   },
 
@@ -75,7 +75,7 @@ export default {
     },
 
     seamlessPictures() {
-      const { pictures } = this.component;
+      const { pictures } = this.component.props;
       if (pictures.length > 1) {
         return [pictures[0], pictures[pictures.length - 1]];
       }
@@ -84,14 +84,14 @@ export default {
   },
 
   watch: {
-    component: {
+    'component.props': {
       deep: true,
       handler() {
         this.processAutoplay();
       },
     },
 
-    'component.autoplay': {
+    'component.props.autoplay': {
       handler(v) {
         if (!v && this.seamlessPictures.length) {
           // 关闭自动轮播并且有多张图的情况下切回首图
@@ -129,11 +129,14 @@ export default {
 
     processAutoplay() {
       clearInterval(this.autoplayInterval);
-      if (this.component.autoplay && this.component.pictures.length > 1) {
+      if (
+        this.component.props.autoplay &&
+        this.component.props.pictures.length > 1
+      ) {
         this.autoplayInterval = setInterval(() => {
           this.sliding = true;
           this.activeIndex += 1;
-        }, this.component.delay * 1000);
+        }, this.component.props.delay * 1000);
       }
     },
 
@@ -146,7 +149,7 @@ export default {
     },
 
     checkIsActiveBullet(index) {
-      const { pictures } = this.component;
+      const { pictures } = this.component.props;
       return (
         (index === 0 && this.activeIndex === pictures.length + 1) ||
         (index === pictures.length - 1 && this.activeIndex === 0) ||
@@ -155,7 +158,7 @@ export default {
     },
 
     handleTransitionend() {
-      if (this.activeIndex > this.component.pictures.length) {
+      if (this.activeIndex > this.component.props.pictures.length) {
         /**
          * 最后一张图其实就是第一张图
          * 过渡效果结束后立即切回到第一张图
@@ -169,7 +172,7 @@ export default {
          * 同上
          */
         this.speed = 0;
-        this.activeIndex = this.component.pictures.length;
+        this.activeIndex = this.component.props.pictures.length;
       }
 
       /**
@@ -178,7 +181,7 @@ export default {
        */
       setTimeout(() => {
         // 开启过渡效果
-        this.speed = this.component.speed;
+        this.speed = this.component.props.speed;
         this.sliding = false;
       }, 0);
     },
