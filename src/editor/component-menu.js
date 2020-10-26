@@ -5,8 +5,14 @@ import controlPanelTextarea from './components/control-panel/Textarea.vue';
 import controlPanelText from './components/control-panel/Text.vue';
 import controlPanelSwiper from './components/control-panel/Swiper.vue';
 import controlPanelForm from './components/control-panel/Form.vue';
+import controlPanelPhone from './components/control-panel/Phone.vue';
 
 export const form = {
+  [COMPONENT_TYPE.手机]: {
+    label: '手机',
+    controlPanel: controlPanelPhone,
+    iconname: 'edit-square',
+  },
   [COMPONENT_TYPE.选择题]: {
     label: '选择题',
     controlPanel: controlPanelChoiseQuestion,

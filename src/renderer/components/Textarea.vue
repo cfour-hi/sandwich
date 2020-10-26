@@ -34,10 +34,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '~@/renderer/styles/form.less';
+// @import '~@/renderer/styles/form.less';
 
 .component__textarea {
-  .form-item();
+  // .form-item();
 
   .textarea {
     box-sizing: border-box;

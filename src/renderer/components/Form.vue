@@ -1,11 +1,9 @@
 <template>
   <div class="component__form">
     <slot />
-    <div class="button-wrap">
-      <button class="button" :style="component.buttonStyle">
-        {{ component.buttonProps.text }}
-      </button>
-    </div>
+    <button class="button" :style="component.buttonStyle">
+      {{ component.buttonProps.text }}
+    </button>
   </div>
 </template>
 
@@ -23,15 +21,44 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.button-wrap {
-  padding: 0 16px 16px;
-}
-
 .button {
   width: 100%;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   outline: none;
+}
+</style>
+
+<style lang="less">
+.component__form {
+  padding: 16px 24px;
+
+  .component-wrap {
+    padding-bottom: 16px;
+  }
+
+  .title {
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 700;
+
+    &.required::before {
+      content: '*';
+      position: absolute;
+      margin-left: -12px;
+      color: #f56c6c;
+    }
+  }
+
+  .desc {
+    font-size: 14px;
+    color: #999;
+    font-weight: 400;
+  }
+
+  .button {
+    height: 40px;
+  }
 }
 </style>

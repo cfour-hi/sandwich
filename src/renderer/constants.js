@@ -6,6 +6,7 @@ export const COMPONENT_TYPE = {
   文本: 'text',
   轮播图: 'swiper',
   表单: 'form',
+  手机: 'phone',
 };
 
 export const QUESTION_TYPE = {

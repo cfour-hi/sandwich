@@ -30,6 +30,7 @@ import Textarea from './components/Textarea.vue';
 import Text from './components/Text.vue';
 import Swiper from './components/Swiper.vue';
 import Form from './components/Form.vue';
+import Phone from './components/Phone.vue';
 
 export default {
   name: 'RenderComponent',
@@ -54,6 +55,7 @@ export default {
       [COMPONENT_TYPE.文本]: Text,
       [COMPONENT_TYPE.轮播图]: Swiper,
       [COMPONENT_TYPE.表单]: Form,
+      [COMPONENT_TYPE.手机]: Phone,
     };
     return {};
   },

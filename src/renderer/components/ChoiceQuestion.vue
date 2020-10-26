@@ -37,10 +37,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '~@/renderer/styles/form.less';
+// @import '~@/renderer/styles/form.less';
 
 .component__choice-question {
-  .form-item();
+  // .form-item();
 
   .option {
     display: flex;
