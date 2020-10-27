@@ -1,5 +1,5 @@
 import store from './store/index';
-import { SANDWICH_JSON_DATA } from './constants';
+import { SANDWICH_JSON_DATA } from '@/renderer/constants';
 
 /**
  * 保存页面数据到本地

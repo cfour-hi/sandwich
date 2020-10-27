@@ -4,7 +4,7 @@ import store from './store/index';
 import App from './App.vue';
 import SvgIcon from '@/common/svg-icon/index';
 import Renderer from '@/renderer/main';
-import { SANDWICH_JSON_DATA } from './constants';
+import { SANDWICH_JSON_DATA } from '@/renderer/constants';
 import { SET_COMPONENTS } from './store/mutation-types';
 
 Vue.config.productionTip = false;

@@ -1,3 +1,5 @@
+export const SANDWICH_JSON_DATA = 'SANDWICH_JSON_DATA';
+
 export const FORM_COMPONENT_TYPE = {
   手机: 'phone',
   选择题: 'choise-question',
