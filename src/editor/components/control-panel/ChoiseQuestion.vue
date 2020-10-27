@@ -43,7 +43,7 @@
 <script>
 import { QUESTION_TYPE } from '@/renderer/constants';
 import { generateDefaultOption } from '@/renderer/component-factory/config/choise-question';
-import MultipleOption from './multiple-option/index.vue';
+import MultipleOption from './form-item/options/index.vue';
 import FormItemInput from './form-item/Input.vue';
 import FormItemSwitch from './form-item/Switch.vue';
 import mixinPropsStyle from './mixins/props-style';

@@ -2,8 +2,8 @@
   <div class="component__phone">
     <div class="title" :class="{ required: component.props.required }">
       {{ component.props.title }}
-      <div class="desc">{{ component.props.desc }}</div>
     </div>
+    <div class="desc">{{ component.props.desc }}</div>
 
     <input
       v-model="value"

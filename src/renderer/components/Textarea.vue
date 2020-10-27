@@ -2,8 +2,8 @@
   <div class="component__textarea">
     <div class="title" :class="{ required: component.props.required }">
       {{ component.props.title }}
-      <div class="desc">{{ component.props.desc }}</div>
     </div>
+    <div class="desc">{{ component.props.desc }}</div>
 
     <textarea
       v-model="value"
