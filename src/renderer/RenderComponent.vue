@@ -4,7 +4,8 @@
     <!-- <slot name="before-sub-component2" /> -->
 
     <component
-      :is="componentTypes[component.type]"
+      :is="_componentRenderConfig[component.type]"
+      ref="component"
       :component="component"
       class="component"
     >
@@ -45,10 +46,15 @@ export default {
       type: Object,
       required: true,
     },
+
+    componentRenderConfig: {
+      type: Object,
+      default: () => ({}),
+    },
   },
 
   data() {
-    this.componentTypes = {
+    this._componentRenderConfig = {
       [COMPONENT_TYPE.图片]: Picture,
       [COMPONENT_TYPE.选择题]: ChoiceQuestion,
       [COMPONENT_TYPE.输入框]: Textarea,
@@ -56,6 +62,7 @@ export default {
       [COMPONENT_TYPE.轮播图]: Swiper,
       [COMPONENT_TYPE.表单]: Form,
       [COMPONENT_TYPE.手机]: Phone,
+      ...this.componentRenderConfig,
     };
     return {};
   },

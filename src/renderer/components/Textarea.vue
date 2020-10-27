@@ -6,7 +6,7 @@
     </div>
 
     <textarea
-      :value="value"
+      v-model="value"
       :rows="component.props.rows"
       class="textarea"
       placeholder="请输入"
@@ -30,26 +30,26 @@ export default {
       value: '',
     };
   },
+
+  methods: {
+    getData() {
+      return this.value;
+    },
+  },
 };
 </script>
 
 <style lang="less" scoped>
-// @import '~@/renderer/styles/form.less';
-
-.component__textarea {
-  // .form-item();
-
-  .textarea {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 8px;
-    border: 0;
-    border-radius: 4px;
-    font-size: 14px;
-    line-height: 24px;
-    background-color: #f8f8f8;
-    outline: 0;
-    resize: none;
-  }
+.textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 24px;
+  background-color: #f8f8f8;
+  outline: 0;
+  resize: none;
 }
 </style>

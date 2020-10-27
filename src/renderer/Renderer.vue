@@ -5,6 +5,7 @@
       :key="component.id"
       :components="components"
       :component="component"
+      v-bind="$attrs"
     >
       <template #before-component>
         <slot name="before-component" :component="component" :index="index" />

@@ -1,7 +1,11 @@
 <template>
   <div class="component__form">
     <slot />
-    <button class="button" :style="component.buttonStyle">
+    <button
+      class="button"
+      :style="component.buttonStyle"
+      @click="handleClickButton"
+    >
       {{ component.buttonProps.text }}
     </button>
   </div>
@@ -15,6 +19,16 @@ export default {
     component: {
       type: Object,
       required: true,
+    },
+  },
+
+  methods: {
+    handleClickButton() {
+      const result = {};
+      this.$children.forEach(({ component, $refs }) => {
+        result[component.id] = $refs.component.getData();
+      });
+      this.$emit('submit', result);
     },
   },
 };

@@ -15,9 +15,9 @@ export const toRawType = v => toString.call(v).slice(8, -1);
 
 // 生成随机码
 export const genRandomCode = () =>
-  `${Date.now().toString(36)}_${Math.random()
+  `${Date.now().toString(36)}${Math.random()
     .toString(36)
-    .slice(2)}`;
+    .slice(-5)}`;
 
 /**
  * 对象的非扩展赋值

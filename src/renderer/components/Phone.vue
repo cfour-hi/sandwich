@@ -6,21 +6,30 @@
     </div>
 
     <input
+      v-model="value"
       type="tel"
-      :value="value"
       :placeholder="component.props.placeholder"
       class="input input__phone"
     />
 
     <div class="code-wrap">
       <input
+        ref="inputCode"
+        v-model="code"
         type="tel"
-        :value="code"
         class="input input__code"
         placeholder="请输入短信验证码"
       />
 
-      <button :style="component.buttonStyle" class="button">发送验证码</button>
+      <button
+        :style="component.buttonStyle"
+        :disabled="disableSendCode"
+        class="button"
+        @click="handleClickSendCode"
+      >
+        <span v-if="disableSendCode">{{ codeCountdown }}秒</span>
+        <span v-else>发送验证码</span>
+      </button>
     </div>
   </div>
 </template>
@@ -37,10 +46,38 @@ export default {
   },
 
   data() {
+    this.timer = null;
     return {
       value: '',
       code: '',
+      codeCountdown: 0,
     };
+  },
+
+  computed: {
+    disableSendCode() {
+      return this.codeCountdown > 0;
+    },
+  },
+
+  methods: {
+    getData() {
+      return { value: this.value, code: this.code };
+    },
+
+    handleClickSendCode() {
+      if (this.codeCountdown > 0) return;
+
+      this.$refs.inputCode.focus();
+
+      this.codeCountdown = 60;
+      this.timer = setInterval(() => {
+        this.codeCountdown -= 1;
+        if (this.codeCountdown === 0) {
+          clearInterval(this.timer);
+        }
+      }, 1000);
+    },
   },
 };
 </script>
@@ -79,9 +116,17 @@ export default {
     margin-left: 10px;
     border: none;
     border-radius: 4px;
+    font-size: 14px;
     cursor: pointer;
     outline: none;
     background-color: @color-brand;
+
+    &:disabled {
+      // filter: grayscale(100%);
+      background-color: #f8f8f8 !important;
+      color: #999 !important;
+      cursor: not-allowed;
+    }
   }
 }
 </style>

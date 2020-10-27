@@ -1,11 +1,17 @@
 <template>
   <div id="app">
-    <Renderer v-if="components" :components="components" />
+    <Renderer
+      v-if="components"
+      :components="components"
+      :component-render-config="componentRenderConfig"
+    />
   </div>
 </template>
 
 <script>
+import { COMPONENT_TYPE } from '@/renderer/constants';
 import Renderer from '@/renderer/Renderer';
+import FormWrap from './components/Form.vue';
 
 export default {
   name: 'App',
@@ -15,6 +21,9 @@ export default {
   },
 
   data() {
+    this.componentRenderConfig = {
+      [COMPONENT_TYPE.表单]: FormWrap,
+    };
     return {
       components: null,
     };

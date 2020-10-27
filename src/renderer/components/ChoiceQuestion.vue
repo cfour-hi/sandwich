@@ -5,17 +5,14 @@
       <div class="desc">{{ component.props.desc }}</div>
     </div>
     <ul class="option-list">
-      <li
-        v-for="(option, index) in component.props.options"
-        :key="index"
-        class="option"
-      >
+      <li v-for="(option, index) in options" :key="index" class="option">
         <input
           :id="`option-${_uid}-${index}`"
-          :type="component.props.quesType"
           :checked="option.checked"
+          :type="component.props.quesType"
           :name="`question${_uid}`"
           class="option-input"
+          @change="option.checked = !option.checked"
         />
         <label :for="`option-${_uid}-${index}`">{{ option.label }}</label>
       </li>
@@ -33,15 +30,25 @@ export default {
       required: true,
     },
   },
+
+  data() {
+    return {
+      options: JSON.parse(JSON.stringify(this.component.props.options)),
+    };
+  },
+
+  methods: {
+    getData() {
+      return this.options
+        .filter(option => option.checked)
+        .map(option => option.label);
+    },
+  },
 };
 </script>
 
 <style lang="less" scoped>
-// @import '~@/renderer/styles/form.less';
-
 .component__choice-question {
-  // .form-item();
-
   .option {
     display: flex;
     font-size: 14px;
