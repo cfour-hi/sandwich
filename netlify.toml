@@ -1,2 +1,0 @@
-[context.production]
-  environment = { VUE_APP_SITE_DOMAIN = "https://sandwich-site.netlify.app/" }
