@@ -19,7 +19,7 @@ function resolvePublicPath() {
 module.exports = {
   outputDir: path.resolve(__dirname, `dist/${process.env.PROJECT_NAME}`),
 
-  publicPath: resolvePublicPath(),
+  publicPath: process.env.NODE_ENV === 'production' ? resolvePublicPath() : '/',
 
   chainWebpack: config => {
     // https://github.com/JetBrains/svg-sprite-loader

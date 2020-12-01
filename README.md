@@ -2,7 +2,7 @@
 
 一个落地页模板项目，包含可视化广告页面编辑器、站点和渲染器。
 
-[https://sandwich-editor.netlify.com/](https://sandwich-editor.netlify.com/)
+[https://znlbwo.github.io/sandwich/editor/](https://znlbwo.github.io/sandwich/editor/)
 
 ## 背景
 

@@ -28,6 +28,8 @@ export default {
     RenderComponent,
   },
 
+  inheritAttrs: false,
+
   props: {
     components: {
       type: Object,

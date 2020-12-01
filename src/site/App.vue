@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { COMPONENT_TYPE } from '@/renderer/constants';
+import { COMPONENT_TYPE, SANDWICH_JSON_DATA } from '@/renderer/constants';
 import Renderer from '@/renderer/Renderer';
 import FormWrap from './components/Form.vue';
 
@@ -27,6 +27,21 @@ export default {
     return {
       components: null,
     };
+  },
+
+  created() {
+    const data = window.localStorage.getItem(SANDWICH_JSON_DATA);
+    if (data) {
+      const { components } = JSON.parse(data);
+      if (components) this.components = components;
+    }
+  },
+
+  mounted() {
+    window.addEventListener('message', e => {
+      const { components } = e.data;
+      if (components) this.components = components;
+    });
   },
 };
 </script>

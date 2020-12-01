@@ -39,27 +39,16 @@ export default {
     };
   },
 
-  created() {
-    window.addEventListener('message', this.onmessage);
-  },
-
   mounted() {
     document.body.appendChild(this.$el);
   },
 
-  beforeDestroy() {
-    window.removeEventListener('message', this.onmessage);
-  },
-
   methods: {
-    onmessage(e) {
-      const { readyState } = e.data;
-      if (readyState === 'loading') {
-        this.$refs.iframe.contentWindow.postMessage(
-          { components: this.$store.state.page.components },
-          siteLocation.origin
-        );
-      }
+    postMessage() {
+      this.$refs.iframe.contentWindow.postMessage(
+        { components: this.$store.state.page.components },
+        siteLocation.origin
+      );
     },
 
     handleClickMask() {

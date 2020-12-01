@@ -1,6 +1,6 @@
 <template>
   <el-container id="app" direction="vertical">
-    <AppHeader @preview="showPreview = true" />
+    <AppHeader @preview="handlePreview" />
 
     <el-container>
       <!-- 组件选择面板 -->
@@ -12,7 +12,11 @@
     </el-container>
 
     <!-- 预览窗口 -->
-    <Preview v-if="showPreview" @clickMask="showPreview = false" />
+    <Preview
+      v-show="showPreview"
+      ref="preview"
+      @clickMask="showPreview = false"
+    />
   </el-container>
 </template>
 
@@ -38,6 +42,13 @@ export default {
     return {
       showPreview: false,
     };
+  },
+
+  methods: {
+    handlePreview() {
+      this.showPreview = true;
+      this.$refs.preview.postMessage();
+    },
   },
 };
 </script>
