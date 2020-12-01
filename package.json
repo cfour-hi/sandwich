@@ -6,7 +6,7 @@
     "serve": "yarn serve:editor & yarn serve:site",
     "serve:editor": "node scripts/serve.js editor --port 9001",
     "serve:site": "node scripts/serve.js site --port 9002",
-    "build": "yarn build:editor & yarn build:site",
+    "build": "yarn build:editor & yarn build:site & wait",
     "build:editor": "node scripts/build.js editor",
     "build:site": "node scripts/build.js site",
     "lint": "vue-cli-service lint"

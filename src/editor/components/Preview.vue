@@ -3,7 +3,7 @@
     <div class="mobile-phone" :style="mobilePhoneStyle">
       <iframe
         ref="iframe"
-        :src="PREVIEW_ORIGIN"
+        :src="SITE_ADDRESS"
         frameborder="0"
         width="100%"
         height="100%"
@@ -16,9 +16,11 @@
 import {
   MOBILE_PHONE_WIDTH,
   MOBILE_PHONE_HEIGHT,
-  PREVIEW_ORIGIN,
+  SITE_ADDRESS,
 } from '@/editor/constants';
 import mask from '@/editor/directives/mask';
+
+const siteLocation = new URL(SITE_ADDRESS);
 
 export default {
   name: 'Preview',
@@ -28,7 +30,7 @@ export default {
   },
 
   data() {
-    this.PREVIEW_ORIGIN = PREVIEW_ORIGIN;
+    this.SITE_ADDRESS = SITE_ADDRESS;
     return {
       mobilePhoneStyle: {
         width: `${MOBILE_PHONE_WIDTH}px`,
@@ -55,7 +57,7 @@ export default {
       if (readyState === 'loading') {
         this.$refs.iframe.contentWindow.postMessage(
           { components: this.$store.state.page.components },
-          PREVIEW_ORIGIN
+          siteLocation.origin
         );
       }
     },

@@ -2,8 +2,24 @@ const path = require('path');
 
 process.env.VUE_APP_VERSION = require('./package.json').version;
 
+function resolvePublicPath() {
+  let p = '/sandwich';
+  switch (process.env.PROJECT_NAME) {
+    case 'editor':
+      p += '/editor';
+      break;
+    case 'site':
+      p += '/site';
+      break;
+  }
+  p += '/';
+  return p;
+}
+
 module.exports = {
   outputDir: path.resolve(__dirname, `dist/${process.env.PROJECT_NAME}`),
+
+  publicPath: resolvePublicPath(),
 
   chainWebpack: config => {
     // https://github.com/JetBrains/svg-sprite-loader
